@@ -31,7 +31,7 @@ export function Header() {
         {open && <MobileMenu open={open} setOpen={setOpen} />}
         <ul className="hidden text-white lg:flex flex-row gap-[78px] font-montserrat font-bold">
           {headerLinks.map(({ link, name }, i) => (
-            <li key={i}>
+            <li key={i} className="hover:underline underline-offset-4">
               <Link to={link}>{name}</Link>
             </li>
           ))}
