@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { MobileMenu } from "./MobileMenu";
-import Logo from "./shared/Logo";
+import { Logo } from "./shared/Logo";
 const headerLinks = [
   { name: "О нас", link: "/about" },
   { name: "Вебинары", link: "/webinars" },
