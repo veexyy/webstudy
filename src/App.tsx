@@ -1,11 +1,5 @@
-import { Header } from "./components/Header";
-import { Header } from "./components/Header";
 function App() {
-  return (
-    <div className="bg-black min-h-screen">
-      <Header />
-    </div>
-  );
+  return <div className="bg-black min-h-screen"></div>;
 }
 
 export default App;
