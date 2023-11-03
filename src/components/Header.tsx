@@ -14,7 +14,7 @@ export function Header() {
   }, [open]);
   return (
     <header>
-      <div className="flex bg-transparent justify-between px-3 items-center lg:px-6 desktop:px-[50px] h-fit max-w-[1650px] mx-auto">
+      <div className="flex bg-transparent justify-between px-3 items-center lg:px-6 desktop:px-[50px] h-fit max-w-[1548px] mx-auto">
         <Logo />
         <div
           onClick={() => setOpen(!open)}
@@ -24,9 +24,8 @@ export function Header() {
         >
           <div className="border-white w-6 border-2"></div>
           <div className="border-white w-6 border-2"></div>
-          <div className="border-white w-6 border-2"></div>L
+          <div className="border-white w-6 border-2"></div>
         </div>
-
         {open && <MobileMenu open={open} setOpen={setOpen} />}
         <ul className="hidden text-white lg:flex flex-row gap-[78px] font-montserrat font-bold">
           {headerLinks.map(({ link, name }, i) => (
