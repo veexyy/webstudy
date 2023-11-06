@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ColumnDataType } from "./Footer";
+import { ColumnDataType } from "./FooterLinks";
 
 export function Column({ title, links }: ColumnDataType) {
   return (
@@ -13,7 +13,7 @@ export function Column({ title, links }: ColumnDataType) {
       <ul className="flex flex-col gap-2 items-center md:items-start">
         {links.map(({ link, name }, i) => (
           <li
-            className="font-bold font-montserrat hover:underline underline-offset-4 "
+            className="font-bold font-montserrat hover:underline underline-offset-4"
             key={i}
           >
             <Link to={link}>{name}</Link>
