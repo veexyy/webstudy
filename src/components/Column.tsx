@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ColumnDataType } from "./FooterLinks";
-
 export function Column({ title, links }: ColumnDataType) {
   return (
     <div>
