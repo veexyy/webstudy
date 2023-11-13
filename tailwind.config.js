@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require("tailwindcss/plugin");
 export default {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -20,21 +19,7 @@ export default {
         montserrat: ["Montserrat", "sans-serif"],
         akony: ["Akony", "sans-serif"],
       },
-      textShadow: {
-        sm: "2px 2px 4px var(--tw-shadow-color)",
-      },
     },
   },
-  plugins: [
-    plugin(function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          "text-shadow": (value) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme("textShadow") }
-      );
-    }),
-  ],
+  plugins: [],
 };
