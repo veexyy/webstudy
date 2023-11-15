@@ -5,4 +5,5 @@ export type Link = {
 export type Dispatch = {
   open: boolean;
   setOpen: (open: boolean) => void;
+  children?: React.ReactNode;
 };
