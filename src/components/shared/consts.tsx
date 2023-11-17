@@ -12,3 +12,7 @@ export const frontSidePayWidgetParagraph = [
   "15+ проектов в портфолио",
   "Интерактивный тренажёр в Figma",
 ];
+export const choosePaymentType = [
+  "Взять в рассрочку",
+  "Оплатить сумму целиком",
+];
