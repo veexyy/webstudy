@@ -1,7 +1,7 @@
 import { borderDesign } from "../../../components/shared/consts";
 import { useForm } from "react-hook-form";
 import PayButton from "./PayButton";
-type FormValues = {
+export type FormValues = {
   name: string;
   phone: string;
   email: string;
