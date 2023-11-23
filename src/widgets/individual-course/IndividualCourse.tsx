@@ -4,7 +4,7 @@ import CourseDate from "./components/CourseDate";
 import CourseImage from "./components/CourseImage";
 import CourseSubtitle from "./components/CourseSubtitle";
 import CourseTitle from "./components/CourseTitle";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export function IndividualCourse() {
   const [title, setTitle] = useState("");
@@ -14,18 +14,18 @@ export function IndividualCourse() {
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts/5")
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         const title = response.data.title;
         const subtitle = response.data.body;
         setDescription(subtitle);
         setTitle(title);
       })
-      .catch((error) => {
+      .catch((error: AxiosResponse) => {
         console.error(error);
       });
     axios
       .get("https://jsonplaceholder.typicode.com/photos")
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         const photo = response.data[10].url;
         setPhoto(photo);
       });
