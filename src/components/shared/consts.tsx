@@ -17,3 +17,5 @@ export const choosePaymentType: string[] = [
   "Оплатить сумму целиком",
 ];
 export const ourAchievments: string[] = ["356  курсов", "190 000+ студентов"];
+export const inputStyle: string =
+  "bg-white rounded-xl p-3 ring-2 ring-blue-600 focus:outline-none w-full";
