@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-type FormValues = {
+export type FormValues = {
   email: string;
   password: string;
+  repeatPassword?: string;
 };
 export function LoginForm() {
   const {
