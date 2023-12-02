@@ -11,7 +11,7 @@ export default function RegisterForm() {
     trigger,
     reset,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {
     console.log(data);
@@ -118,7 +118,15 @@ export default function RegisterForm() {
       <Link to="/forgot-password" className="text-white font-bold">
         Забыл пароль?
       </Link>
-      <button className={inputStyle + " font-bold"} type="submit">
+      <button
+        disabled={!isValid}
+        className={
+          isValid
+            ? `${inputStyle} cursor-pointer font-bold`
+            : `${inputStyle} cursor-default bg-gray-400 ring-0`
+        }
+        type="submit"
+      >
         Регистрация
       </button>
       <div className="text-white font-bold">

@@ -11,7 +11,7 @@ export function LoginForm() {
     handleSubmit,
     trigger,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormValues>();
   const inputStyle: string =
     "bg-white rounded-xl p-3 ring-2 ring-blue-600 focus:outline-none w-full";
@@ -67,7 +67,15 @@ export function LoginForm() {
         <Link to="/forgot-password" className="text-white font-bold">
           Забыл пароль?
         </Link>
-        <button className={inputStyle + " font-bold"} type="submit">
+        <button
+          disabled={!isValid}
+          className={
+            isValid
+              ? `${inputStyle} cursor-pointer font-bold`
+              : `${inputStyle} cursor-default bg-gray-400 ring-0`
+          }
+          type="submit"
+        >
           Войти
         </button>
         <div className="text-white font-bold">
