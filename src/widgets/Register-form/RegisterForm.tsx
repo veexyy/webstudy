@@ -4,6 +4,19 @@ import { FormValues } from "../login/LoginForm";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import axiosApiInterceptor from "../../api";
+export type UserType = {
+  email: string;
+  uid: string;
+  accessToken: string;
+};
+let userData = {
+  email: "",
+  token: "",
+  localId: "",
+  refreshToken: "",
+};
 export default function RegisterForm() {
   const {
     register,
@@ -13,9 +26,46 @@ export default function RegisterForm() {
     watch,
     formState: { errors, isValid },
   } = useForm<FormValues>();
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    reset();
+  const navigate = useNavigate();
+  const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+  const onSubmit = async (payload: any) => {
+    try {
+      let res = await axiosApiInterceptor.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
+        {
+          ...payload,
+          returnSecureToken: true,
+        }
+      );
+      navigate("/courses");
+      reset();
+      userData = {
+        email: res.data.email,
+        token: res.data.idToken,
+        localId: res.data.localId,
+        refreshToken: res.data.refreshToken,
+      };
+      localStorage.setItem(
+        "tokens",
+        JSON.stringify({
+          idToken: userData.token,
+          refreshToken: userData.refreshToken,
+        })
+      );
+    } catch (error: any) {
+      switch (error.response.data.error.message) {
+        case "EMAIL_EXISTS":
+          alert("Пользователь с такой почтой уже существует");
+          break;
+        case "OPERATION_NOT_ALLOWED":
+          alert('Операция "Регистрация" не разрешена');
+          break;
+        default:
+          alert("Ошибка");
+          break;
+      }
+    }
+    return userData;
   };
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -23,7 +73,7 @@ export default function RegisterForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       method="post"
-      className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[90vh] max-w-[500px] px-3 gap-3"
+      className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[90vh] max-w-[500px] px-3 gap-3 relative z-[1]"
     >
       <h1 className="text-white font-bold text-2xl mobile:text-3xl font-montserrat text-center mb-5 ">
         Добро пожаловать!
@@ -126,6 +176,7 @@ export default function RegisterForm() {
             : `${inputStyle} cursor-default bg-gray-400 ring-0`
         }
         type="submit"
+        onClick={() => onSubmit}
       >
         Регистрация
       </button>
