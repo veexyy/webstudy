@@ -5,7 +5,7 @@ export function Column({ title, links }: ColumnDataType) {
   return (
     <div>
       <div
-        className="text-[#9BFF37] font-sans font-bold text-stroke-sm stroke-1 mb-[32px] text-shadow-sm text-3xl shadow-white"
+        className="text-[#9BFF37] font-sans font-bold text-stroke-sm stroke-1 mb-[32px] text-shadow-sm text-3xl shadow-white relative z-10"
         style={{ WebkitTextStroke: "1px black" }}
       >
         {title}

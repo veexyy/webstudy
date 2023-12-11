@@ -11,7 +11,7 @@ export function Header({ children }: PropsWithChildren) {
   }, [open]);
   return (
     <header>
-      <div className="flex bg-transparent justify-between px-3 items-center lg:px-6 desktop:px-[50px] h-fit max-w-[1548px] mx-auto">
+      <div className="flex bg-transparent justify-between px-3 items-center lg:px-6 desktop:px-[50px] h-fit max-w-[1548px] mx-auto relative z-10">
         <Logo />
         <HamburgerMenu open={open} setOpen={setOpen} />
         {open && <MobileMenu open={open} setOpen={setOpen} />}
