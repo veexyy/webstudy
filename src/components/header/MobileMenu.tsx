@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Dispatch } from "../shared/types";
 import Cross from "./Cross";
 import { headerLinks } from "../shared/consts";
@@ -8,7 +8,12 @@ export function MobileMenu({ open, setOpen }: Dispatch) {
   {
     token ? headerLinks.splice(2, 1) : null;
   }
-
+  const nav = useNavigate();
+  const handleExit = () => {
+    localStorage.removeItem("tokens");
+    setOpen(!open);
+    nav("/login");
+  };
   return (
     <>
       <Cross open={open} setOpen={setOpen} />
@@ -24,7 +29,9 @@ export function MobileMenu({ open, setOpen }: Dispatch) {
             </li>
           ))}
           {token ? (
-            <li onClick={() => localStorage.removeItem("tokens")}>Выйти</li>
+            <li onClick={() => handleExit()} className="cursor-pointer">
+              Выйти
+            </li>
           ) : (
             <Link to={"/login"} onClick={() => setOpen(!open)}>
               <li>Войти</li>
