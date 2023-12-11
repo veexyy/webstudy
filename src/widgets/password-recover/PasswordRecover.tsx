@@ -2,10 +2,11 @@ import WidgetTitle from "../../components/shared/widgettitle";
 import { inputStyle } from "../../components/shared/consts";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import axiosApiInterceptor from "../../api";
 type PasswordRecoverType = {
   email: string;
 };
-
 export default function PasswordRecover() {
   const {
     register,
@@ -14,8 +15,24 @@ export default function PasswordRecover() {
     reset,
     formState: { errors, isValid },
   } = useForm<PasswordRecoverType>();
-  const onSubmit = (data: PasswordRecoverType) => {
-    console.log(data);
+  const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+  const onSubmit = (payload: PasswordRecoverType) => {
+    try {
+      axiosApiInterceptor.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${apiKey}`,
+        {
+          ...payload,
+          requestType: "PASSWORD_RESET",
+        }
+      );
+    } catch (error: any) {
+      console.log(error.response.data.error.message);
+      switch (error) {
+        case "EMAIL_NOT_FOUND":
+          alert("Пользователь с такой почтой не найден");
+          break;
+      }
+    }
     reset();
   };
   const [element, setElement] = useState(false);
@@ -26,7 +43,7 @@ export default function PasswordRecover() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[90vh] max-w-[500px] px-3 gap-8"
+        className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[85vh] max-w-[500px] px-3 gap-8 relative z-[1]"
       >
         <WidgetTitle>Восстановление пароля</WidgetTitle>
         {element && (
@@ -53,9 +70,15 @@ export default function PasswordRecover() {
             {errors.email?.message}
           </p>
         </div>
+        <Link
+          className="text-white font-montserrat font-bold hover:underline underline-offset-4"
+          to="/login"
+        >
+          Я вспомнил пароль
+        </Link>
         <input
           type="submit"
-          value="Отправить код"
+          value="Отправить письмо"
           className={
             isValid
               ? `${inputStyle} cursor-pointer font-bold`
