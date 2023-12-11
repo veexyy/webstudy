@@ -57,17 +57,21 @@ export function LoginForm() {
         })
       );
     } catch (error: any) {
-      switch (error.response.data.error.message) {
+      switch (error.res.data.error.message) {
         case "EMAIL_NOT_FOUND":
           alert("Пользователь с такой почтой не найден");
           break;
         case "INVALID_PASSWORD":
           alert("Неправильный пароль");
           break;
+        case "INVALID_LOGIN_CREDENTIALS":
+          alert("Неправильный логин или пароль");
+          break;
         default:
           alert("Ошибка в форме логина");
           break;
       }
+      console.log(error.response.data);
     }
     return userData;
   };
