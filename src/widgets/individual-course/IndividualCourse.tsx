@@ -28,7 +28,7 @@ export function IndividualCourse() {
         setTitle(res.data[paramsId].title);
         setDescription(res.data[paramsId].subtitle);
         setPhoto(res.data[paramsId].url);
-        setTime(res.data[paramsId].time);
+        setTime(res.data[paramsId].fullCourseDuration);
         setId(res.data[paramsId].id);
       }
     } catch (error) {
