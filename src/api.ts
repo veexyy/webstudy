@@ -21,7 +21,6 @@ axiosApiInterceptor.interceptors.response.use(
               .refreshToken,
           }
         );
-        console.log(newTokens.data);
         localStorage.setItem(
           "tokens",
           JSON.stringify({
@@ -31,7 +30,6 @@ axiosApiInterceptor.interceptors.response.use(
         );
       } catch (err) {
         const nav = useNavigate();
-
         localStorage.removeItem("tokens");
         nav("/login");
       }

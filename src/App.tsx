@@ -12,7 +12,7 @@ import { Layout } from "./components/layouts/MainLayout";
 import PrivateRoute from "./components/shared/private-route";
 import Webinars from "./pages/webinars/webinars";
 import Courses from "./pages/courses/courses";
-import { IndividualCourse } from "./widgets/individual-course/IndividualCourse";
+import Course from "./pages/course/course";
 
 function App() {
   const location = useLocation();
@@ -20,7 +20,7 @@ function App() {
   const pathName = location.pathname;
 
   return (
-    <div className="bg-black">
+    <div className="bg-black ">
       {(user && pathName == "/login") ||
       (user && pathName == "/register") ||
       (user && pathName == "/forgot-password") ? (
@@ -44,10 +44,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/courses" element={<Courses />}></Route>
               <Route path="/account" element={<PersonalAccount />}></Route>
-              <Route
-                path={"/courses/:id"}
-                element={<IndividualCourse />}
-              ></Route>
+              <Route path="/courses/:id" element={<Course />}></Route>
               <Route path="/"></Route>
             </Route>
           </Route>
