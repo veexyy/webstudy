@@ -7,7 +7,6 @@ import CourseTitle from "./components/CourseTitle";
 import { AxiosResponse } from "axios";
 import { useMatch } from "react-router-dom";
 import axiosApiInterceptor from "../../api";
-
 export function IndividualCourse() {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState("");
@@ -40,7 +39,7 @@ export function IndividualCourse() {
   }, [id]);
   return (
     <>
-      <div className="flex flex-col md:flex-row max-w-[870px] gap-10 items-center border border-white rounded-lg p-4">
+      <div className="flex flex-col md:flex-row max-w-[870px] gap-10 items-center border border-white rounded-lg p-4 relative z-[1]">
         <CourseImage className="h-full w-[300px]" src={photo}></CourseImage>
         <div className="flex flex-col gap-8">
           <CourseTitle>{title}</CourseTitle>
