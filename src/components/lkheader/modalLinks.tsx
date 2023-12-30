@@ -10,6 +10,7 @@ export default function ModalLinks() {
     localStorage.removeItem("tokens");
     navigate("/login");
     dispatch(removeAuth());
+    window.location.reload();
   };
   const links: LinkType[] = [
     { name: "О нас", link: "/about" },

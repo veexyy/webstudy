@@ -13,6 +13,7 @@ import PrivateRoute from "./components/shared/private-route";
 import Webinars from "./pages/webinars/webinars";
 import Courses from "./pages/courses/courses";
 import Course from "./pages/course/course";
+import CourseInfo from "./pages/course/course-info";
 
 function App() {
   const location = useLocation();
@@ -45,6 +46,10 @@ function App() {
               <Route path="/courses" element={<Courses />}></Route>
               <Route path="/account" element={<PersonalAccount />}></Route>
               <Route path="/courses/:id" element={<Course />}></Route>
+              <Route
+                path="/account/course/:id"
+                element={<CourseInfo />}
+              ></Route>
               <Route path="/"></Route>
             </Route>
           </Route>

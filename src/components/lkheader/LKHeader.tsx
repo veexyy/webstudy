@@ -15,9 +15,9 @@ export function LKHeader() {
         <HamburgerMenu open={open} setOpen={setOpen} />
         {open && <MobileMenu open={open} setOpen={setOpen} />}
         <div className="hidden items-center gap-10 lg:flex">
-          <Link to="/">
+          <Link to="/account">
             <span className="text-white font-bold font-montserrat hover:underline underline-offset-4">
-              Главная
+              Профиль
             </span>
           </Link>
           <img
