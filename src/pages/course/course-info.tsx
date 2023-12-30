@@ -1,5 +1,5 @@
 import Card from "../courses/components/card";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { getDatabase, onValue, ref } from "firebase/database";
 import { useAppDispatch } from "../../components/shared/store/hooks/redux-hooks";
 import { removeFilters } from "../../components/shared/store/filterSlice";
