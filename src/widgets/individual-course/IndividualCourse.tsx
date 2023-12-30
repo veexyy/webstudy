@@ -7,7 +7,7 @@ import CourseTitle from "./components/CourseTitle";
 import { AxiosResponse } from "axios";
 import { useMatch } from "react-router-dom";
 import axiosApiInterceptor from "../../api";
-export function IndividualCourse() {
+export function IndividualCourse(writeUserData: any) {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState("");
   const [description, setDescription] = useState("");
@@ -46,7 +46,7 @@ export function IndividualCourse() {
           <CourseSubtitle>{description}</CourseSubtitle>
           <div className="flex justify-between items-center">
             <CourseDate>{time}</CourseDate>
-            <CourseButton></CourseButton>
+            <CourseButton writeUserData={writeUserData}></CourseButton>
           </div>
         </div>
       </div>
