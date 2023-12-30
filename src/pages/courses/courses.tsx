@@ -7,12 +7,13 @@ import {
   useAppSelector,
 } from "../../components/shared/store/hooks/redux-hooks";
 import { getData } from "../../components/shared/store/filterSlice";
+import { pickCourse } from "../../components/shared/store/courseSlice";
 export interface Course {
   id: string;
-  title: string;
+  title?: string;
   category?: string;
-  image: string;
-  fullCourseDuration: string;
+  image?: string;
+  fullCourseDuration?: string;
   difficult?: number | string;
 }
 export default function Courses() {
@@ -51,8 +52,29 @@ export default function Courses() {
         </div>
         <div className="grid grid-cols-3 h-full gap-y-5 gap-x-10 w-2/3">
           {filteredData.map(
-            ({ id, title, category, image, fullCourseDuration }) => (
-              <Link to={`/courses/${id}`} key={id}>
+            ({
+              id,
+              title,
+              category,
+              image,
+              fullCourseDuration,
+              difficult,
+            }: any) => (
+              <Link
+                onClick={() =>
+                  dispatch(
+                    pickCourse({
+                      id,
+                      title,
+                      category,
+                      fullCourseDuration,
+                      difficult,
+                    })
+                  )
+                }
+                to={`/courses/${id}`}
+                key={id}
+              >
                 <Card
                   id={id}
                   title={title}
