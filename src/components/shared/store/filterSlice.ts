@@ -21,6 +21,8 @@ const initialState = {
   directionFilter: "any",
   durationFilter: "any",
   difficultyFilter: "any",
+  speakersFilter: "",
+  themeFilter: "",
   data: [],
   error: null,
   status: "",
@@ -41,6 +43,12 @@ const filterSlice = createSlice({
     },
     setFetchedData(state, action) {
       state.data = action.payload.data;
+    },
+    setSpeakersFilter(state, action) {
+      state.speakersFilter = action.payload;
+    },
+    setThemeFilter(state, action) {
+      state.themeFilter = action.payload;
     },
     removeDirectionFilter(state) {
       state.directionFilter = "any";
@@ -80,6 +88,8 @@ export const {
   setDirectionFilter,
   setDurationFilter,
   setDifficultyFilter,
+  setSpeakersFilter,
+  setThemeFilter,
   removeFilters,
   setFetchedData,
 } = filterSlice.actions;
