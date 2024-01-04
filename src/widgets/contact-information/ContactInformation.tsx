@@ -18,9 +18,9 @@ export function ContactInformation() {
   const inputStyle =
     "border border-white bg-transparent rounded-xl p-3 ring-2 ring-blue-600 focus:outline-none w-full";
   return (
-    <div className="flex flex-col border-white border rounded-md bg-transparent mx-auto max-w-[1100px] pb-10 pl-10 pr-10">
+    <div className="flex flex-col border-white border rounded-md bg-transparent mx-auto max-w-[1100px] pb-4 pl-4 pr-4 md:pb-10 md:pl-10 md:pr-10">
       <WidgetTitle>Контактная информация</WidgetTitle>
-      <div className="font-montserrat text-white border border-white rounded-md sm:p-5 pb-5 mt-10">
+      <div className="font-montserrat text-white border border-white rounded-md sm:p-5 pb-5">
         <div className="flex flex-col sm:flex-row justify-between items-center sm:my-10 my-5 gap-5 sm:gap-12">
           <div className="font-bold text-xl sm:text-2xl ml-5 md:ml-10">
             Поможем в выборе!
