@@ -2,6 +2,7 @@ import WidgetTitle from "../../components/shared/widgettitle";
 import { useForm } from "react-hook-form";
 import { FormValues } from "../paywidget/components/PayForm";
 import { useState } from "react";
+import { getDatabase, ref, set } from "firebase/database";
 export function ContactInformation() {
   const [showMessage, setShowMessage] = useState(false);
   const {
@@ -11,8 +12,14 @@ export function ContactInformation() {
     reset,
     formState: { errors, isValid },
   } = useForm<FormValues>();
+  const db = getDatabase();
   const onSubmit = (data: FormValues) => {
-    console.log(data);
+    set(ref(db, `dataFromContactInformationForm/${Date.now()}`), {
+      phone: data.phone,
+      email: data.email,
+      name: data.name,
+    });
+    setShowMessage(true);
     reset();
   };
   const inputStyle =
@@ -103,7 +110,7 @@ export function ContactInformation() {
               />
               {showMessage && (
                 <p className="absolute text-blue-600 font-montserrat text-xs -top-2">
-                  Мы отправили вам заявку!
+                  Мы вам перезвоним!
                 </p>
               )}
             </div>
