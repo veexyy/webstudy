@@ -37,7 +37,7 @@ export default function ByDirectionFilter() {
   return (
     <>
       <div className="font-montserrat font-bold my-2">Длительность</div>
-      <div className="flex flex-col text-white relative z-[1]">
+      <div className="flex flex-col text-white">
         <RadioGroup name="time-filters">
           <div>
             <Radio
