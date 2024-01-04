@@ -14,6 +14,7 @@ import Webinars from "./pages/webinars/webinars";
 import Courses from "./pages/courses/courses";
 import Course from "./pages/course/course";
 import CourseInfo from "./pages/course/course-info";
+import MainPage from "./pages/main/MainPage";
 
 function App() {
   const location = useLocation();
@@ -22,14 +23,14 @@ function App() {
 
   return (
     <div className="bg-black ">
-      {(user && pathName == "/login") ||
-      (user && pathName == "/register") ||
-      (user && pathName == "/forgot-password") ? (
-        <Navigate to="/" />
-      ) : (
-        <Outlet />
-      )}
       <Background />
+      {user &&
+        (["/login", "/register", "/forgot-password"].includes(pathName) ? (
+          <Navigate to="/" />
+        ) : (
+          <Outlet />
+        ))}
+
       <div className=" min-h-screen max-w-[1536px] mx-auto">
         <Routes>
           <Route element={<AuthLayout />}>
@@ -40,6 +41,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/about" element={<About />}></Route>
             <Route path="/webinars" element={<Webinars />}></Route>
+            <Route path="/" element={<MainPage />}></Route>
           </Route>
           <Route element={<LKLayout />}>
             <Route element={<PrivateRoute />}>
@@ -50,7 +52,6 @@ function App() {
                 path="/account/course/:id"
                 element={<CourseInfo />}
               ></Route>
-              <Route path="/"></Route>
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
