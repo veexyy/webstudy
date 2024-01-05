@@ -2,6 +2,7 @@ import { getDatabase, onValue, ref } from "firebase/database";
 import Filters from "../../widgets/filters/Filters";
 import { useEffect, useMemo, useState } from "react";
 import { useAppSelector } from "../../components/shared/store/hooks/redux-hooks";
+import Title from "../../components/shared/title";
 
 export default function Webinars() {
   const db = getDatabase();
@@ -49,28 +50,30 @@ export default function Webinars() {
   }, [themeFilter, speakersFilter, memoizedData]);
 
   return (
-    <div className="flex gap-16">
-      <div className="text-white w-1/3">
-        <Filters />
+    <>
+      <Title />
+      <div className="flex gap-16">
+        <div className="text-white w-1/3">
+          <Filters />
+        </div>
+        <div className="w-2/3 text-white grid grid-cols-3 gap-3 ">
+          {filteredData.map(({ title, link }: any, i: any) => (
+            <div
+              className="border border-white rounded-xl p-1 text-center"
+              key={i}
+            >
+              <iframe
+                className="aspect-video rounded-xl p-1 w-full"
+                src={link}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+              {title}
+            </div>
+          ))}
+        </div>
       </div>
-
-      <div className="w-2/3 text-white grid grid-cols-3 gap-3 ">
-        {filteredData.map(({ title, link }: any, i: any) => (
-          <div
-            className="border border-white rounded-xl p-1 text-center"
-            key={i}
-          >
-            <iframe
-              className="aspect-video rounded-xl p-1 w-full"
-              src={link}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-            {title}
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import {
 } from "../../components/shared/store/hooks/redux-hooks";
 import { getData } from "../../components/shared/store/filterSlice";
 import { pickCourse } from "../../components/shared/store/courseSlice";
+import Title from "../../components/shared/title";
 export interface Course {
   id: string;
   title?: string;
@@ -46,9 +47,10 @@ export default function Courses() {
 
   return (
     <>
+      <Title />
       <div className="text-white my-3 flex ">
         <div className="w-1/3">
-          <Filters />
+          <Filters />T
         </div>
         <div className="grid grid-cols-3 h-full gap-y-5 gap-x-10 w-2/3">
           {filteredData.map(
