@@ -43,7 +43,7 @@ export default function PasswordRecover() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[85vh] max-w-[500px] px-3 gap-8 relative z-[1]"
+        className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[85vh] max-w-[500px] px-3 gap-8"
       >
         <WidgetTitle>Восстановление пароля</WidgetTitle>
         {element && (

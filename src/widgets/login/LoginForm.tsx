@@ -80,7 +80,7 @@ export function LoginForm() {
       <form
         onSubmit={handleSubmit(onSubmit)}
         method="post"
-        className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[90vh] max-w-[500px] px-3 gap-3 relative z-[1]"
+        className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[90vh] max-w-[500px] px-3 gap-3"
       >
         <h1 className="text-white font-bold text-2xl mobile:text-3xl font-montserrat text-center mb-5 ">
           Добро пожаловать!

@@ -27,8 +27,8 @@ export default function Ratings() {
 
   return (
     <>
-      <div className="flex flex-col gap-10">
-        <div className="flex justify-between lg:min-w-[900px] lg:mx-auto">
+      <div className="flex flex-col gap-10 max-w-[1100px] mx-auto">
+        <div className="flex justify-between lg:min-w-[900px]">
           <div className="text-white font-bold text-lg sm:text-3xl font-montserrat p-2">
             Программирование
             <br /> по силам каждому
@@ -52,7 +52,7 @@ export default function Ratings() {
             ></IoIosArrowDropright>
           </div>
         </div>
-        <div className="flex flex-col border border-white max-w-[900px] mx-auto rounded-xl p-5 gap-6">
+        <div className="flex flex-col border border-white max-w-[1100px] mx-auto rounded-xl p-5 gap-6">
           <div className="flex flex-col sm:flex-row justify-center items-center sm:items-stretch sm:justify-between gap-3">
             <div>
               <img

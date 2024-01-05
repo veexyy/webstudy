@@ -50,11 +50,11 @@ export default function Webinars() {
 
   return (
     <div className="flex gap-16">
-      <div className="text-white relative z-[1] w-1/3">
+      <div className="text-white w-1/3">
         <Filters />
       </div>
 
-      <div className="w-2/3 text-white relative z-[1] grid grid-cols-3 gap-3 ">
+      <div className="w-2/3 text-white grid grid-cols-3 gap-3 ">
         {filteredData.map(({ title, link }: any, i: any) => (
           <div
             className="border border-white rounded-xl p-1 text-center"

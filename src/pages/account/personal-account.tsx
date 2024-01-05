@@ -39,7 +39,7 @@ export default function PersonalAccount() {
 
   return (
     <>
-      <div className="text-white relative z-[1]">
+      <div className="text-white">
         {data.length === 0 ? (
           <div className=" font-montserrat">
             Привет! Курсы можно выбрать в
@@ -55,12 +55,7 @@ export default function PersonalAccount() {
       </div>
 
       {data.map(({ title, id, fullCourseDuration }, i) => (
-        <Link
-          className="relative z-[1]"
-          to={`/account/course/${id}`}
-          onClick={() => writeId(id)}
-          key={i}
-        >
+        <Link to={`/account/course/${id}`} onClick={() => writeId(id)} key={i}>
           <Card title={title} id={id} fullCourseDuration={fullCourseDuration} />
         </Link>
       ))}

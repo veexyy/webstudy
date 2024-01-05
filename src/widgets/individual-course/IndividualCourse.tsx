@@ -39,7 +39,7 @@ export function IndividualCourse(writeUserData: any) {
   }, [id]);
   return (
     <>
-      <div className="flex flex-col md:flex-row max-w-[870px] gap-10 items-center border border-white rounded-lg p-4 relative z-[1]">
+      <div className="flex flex-col md:flex-row max-w-[870px] gap-10 items-center border border-white rounded-lg p-4 ">
         <CourseImage className="h-full w-[300px]" src={photo}></CourseImage>
         <div className="flex flex-col gap-8">
           <CourseTitle>{title}</CourseTitle>

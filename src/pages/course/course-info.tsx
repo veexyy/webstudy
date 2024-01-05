@@ -37,12 +37,12 @@ export default function CourseInfo() {
   return (
     <>
       <div
-        className="text-white relative z-[1] cursor-pointer font-montserrat max-w-full flex"
+        className="text-white cursor-pointer font-montserrat max-w-full flex"
         onClick={handlerExit}
       >
         ← Вернуться назад
       </div>
-      <div className="flex justify-between gap-16 relative z-[1]">
+      <div className="flex justify-between gap-16">
         <div className="text-white flex flex-col w-1/3 h-1/2">
           {courseData.length > 0 && courseId && (
             <>

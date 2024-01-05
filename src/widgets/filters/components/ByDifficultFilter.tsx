@@ -32,7 +32,7 @@ export default function ByDifficultFilter(): JSX.Element {
       <RadioGroup
         name="difficult-filters"
         sx={{ color: "white", "&.Mui-checked": { color: "white" } }}
-        className="flex flex-col text-white relative z-[1]"
+        className="flex flex-col text-white"
       >
         <div className="flex items-center">
           <Radio

@@ -49,7 +49,7 @@ export default function ByDirectionFilter(): JSX.Element {
   return (
     <>
       <div className="font-montserrat font-bold my-2">Направления</div>
-      <div className="flex flex-col text-white relative z-[1]">
+      <div className="flex flex-col text-white ">
         <RadioGroup name="time-filters">
           <div className="text-white flex items-center">
             <Radio

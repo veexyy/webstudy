@@ -48,7 +48,7 @@ export default function Course() {
   return (
     <>
       <div
-        className="text-white relative z-[1] cursor-pointer font-montserrat"
+        className="text-white cursor-pointer font-montserrat"
         onClick={handlerExit}
       >
         &#8592; Вернуться назад

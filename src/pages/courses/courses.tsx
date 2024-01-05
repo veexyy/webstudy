@@ -46,7 +46,7 @@ export default function Courses() {
 
   return (
     <>
-      <div className="text-white relative z-[1] my-3 flex ">
+      <div className="text-white my-3 flex ">
         <div className="w-1/3">
           <Filters />
         </div>
