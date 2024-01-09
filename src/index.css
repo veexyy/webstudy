@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "akony";
+  src: url("https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/fonts%2FAKONY.woff2?alt=media&token=c0c7ae21-6b1a-469e-8c46-68a56fdccd5b")
+    format("woff2");
+}
