@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
         akony: ["Akony", "sans-serif"],
+        sans: ["Open Sans", "sans-serif"],
       },
       FontFace: {
         akony: {
