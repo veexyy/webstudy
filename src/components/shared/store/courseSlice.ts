@@ -6,6 +6,7 @@ const initialState = {
   pickedCourseDuration: "",
   pickedCourseDifficult: "",
   pickedCourseCategory: "",
+  pickedCoursePicture: "",
 };
 
 export const courseSlice = createSlice({
@@ -18,6 +19,7 @@ export const courseSlice = createSlice({
       state.pickedCourseDuration = action.payload.fullCourseDuration;
       state.pickedCourseDifficult = action.payload.difficult;
       state.pickedCourseTitle = action.payload.title;
+      state.pickedCoursePicture = action.payload.picture;
     },
   },
 });
