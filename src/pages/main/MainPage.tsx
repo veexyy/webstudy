@@ -3,27 +3,7 @@ import { ContactInformation } from "../../widgets/contact-information/ContactInf
 import Professions from "./components/Professions";
 import Ratings from "../../widgets/ratings/Ratings";
 import WeAreInMedia from "./components/WeAreInMedia";
-
 export default function MainPage() {
-  function scrollToAnimated(targetPosition: number, duration: number): void {
-    const startPosition: number = window.scrollY;
-    const distance: number = targetPosition - startPosition;
-    let startTime: number | null = null;
-
-    function scrollAnimation(currentTime: number): void {
-      if (startTime === null) {
-        startTime = currentTime;
-      }
-      const elapsedTime: number = currentTime - startTime;
-      const scrollProgress: number = Math.min(elapsedTime / duration, 1);
-      const scrollValue: number = startPosition + distance * scrollProgress;
-      window.scrollTo(0, scrollValue);
-      if (scrollProgress < 1) {
-        requestAnimationFrame(scrollAnimation);
-      }
-    }
-    requestAnimationFrame(scrollAnimation);
-  }
   return (
     <>
       <div className="text-white flex flex-col items-center justify-center min-h-screen gap-16">
@@ -45,11 +25,15 @@ export default function MainPage() {
           <span>Наши выпускники устраиваются в 91% случаев</span>
         </p>
         <SlArrowDown
-          onClick={() => scrollToAnimated(1000, 100)}
+          onClick={() =>
+            document
+              .getElementById("professions")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
           className="animate-bounce w-8 md:w-12 h-8 md:h-12 mt-4 cursor-pointer"
         />
       </div>
-      <div>
+      <div id="professions">
         <Professions />
       </div>
       <div className="my-24">
