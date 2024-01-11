@@ -1,6 +1,6 @@
 import { getDatabase, onValue, ref } from "firebase/database";
 import Filters from "../../widgets/filters/Filters";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useAppSelector } from "../../components/shared/store/hooks/redux-hooks";
 import Title from "../../components/shared/title";
 
@@ -52,21 +52,21 @@ export default function Webinars() {
   return (
     <>
       <Title />
-      <div className="flex gap-16">
-        <div className="text-white w-1/3">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 my-8 lg:my-16">
+        <div className="text-white lg:w-1/3">
           <Filters />
         </div>
-        <div className="w-2/3 text-white grid grid-cols-3 gap-3 ">
+        <div className="lg:w-2/3 text-white grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 min-h-screen">
           {filteredData.map(({ title, link }: any, i: any) => (
             <div
               className="border border-white rounded-xl p-1 text-center"
               key={i}
             >
               <iframe
+                loading="lazy"
                 className="aspect-video rounded-xl p-1 w-full"
                 src={link}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                frameBorder="0"
                 allowFullScreen
               ></iframe>
               {title}
