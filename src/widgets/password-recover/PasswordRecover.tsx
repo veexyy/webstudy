@@ -82,7 +82,7 @@ export default function PasswordRecover() {
           className={
             isValid
               ? `${inputStyle} cursor-pointer font-bold`
-              : `${inputStyle} cursor-default bg-gray-400 ring-0`
+              : `${inputStyle} cursor-default bg-gray-400 text-gray-500 ring-0`
           }
           onClick={handleClick}
           disabled={!isValid}

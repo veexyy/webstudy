@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Filters from "../../widgets/filters/Filters";
-import Card from "./components/card";
+import { Suspense, lazy } from "react";
+const Card = lazy(() => import("./components/card"));
 import { useEffect, useState } from "react";
 import {
   useAppDispatch,
@@ -10,6 +11,10 @@ import { getData } from "../../components/shared/store/filterSlice";
 import { pickCourse } from "../../components/shared/store/courseSlice";
 import Title from "../../components/shared/title";
 import Coursesinput from "../../components/shared/coursesinput";
+import { CourseSkeleton } from "../../components/shared/skeletons/skeletons";
+import { LuSettings2 } from "react-icons/lu";
+import MobileFilters from "./components/mobile-filters";
+import { Rings } from "react-loader-spinner";
 export interface Course {
   id: string;
   title?: string;
@@ -20,8 +25,10 @@ export interface Course {
 }
 export default function Courses() {
   const dispatch = useAppDispatch();
+  const [open, setOpen] = useState<boolean>(false);
   const [searchCourses, setSearchCourses] = useState<string>("");
   const data = useAppSelector((state) => state.courseFilters.data);
+  const isLoading = useAppSelector((state) => state.courseFilters.isLoading);
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
@@ -47,49 +54,78 @@ export default function Courses() {
   });
   return (
     <>
+      <MobileFilters setOpen={setOpen} open={open} />
       <Title />
-      <div className="my-12">
-        <Coursesinput search={searchCourses} setSearch={setSearchCourses} />
-      </div>
-      <div className="text-white my-3 flex ">
-        <div className="w-1/3">
-          <Filters />
+      <div className="grid grid-cols-1 lg:block">
+        <div className="flex gap-3 items-center">
+          <div className="my-3 w-full lg:my-12 flex justify-center lg:block lg:px-0">
+            <Coursesinput search={searchCourses} setSearch={setSearchCourses} />
+          </div>
+          <button
+            className="text-white font-montserrat font-bold lg:hidden border border-white p-2 rounded-xl"
+            onClick={() => setOpen(true)}
+          >
+            <LuSettings2 size={25} />
+          </button>
         </div>
-        <div className="grid grid-cols-3 h-full gap-y-5 gap-x-10 w-2/3">
-          {filteredData.map(
-            ({
-              id,
-              title,
-              category,
-              image,
-              fullCourseDuration,
-              difficult,
-            }: any) => (
-              <Link
-                onClick={() =>
-                  dispatch(
-                    pickCourse({
-                      id,
-                      title,
-                      category,
-                      fullCourseDuration,
-                      difficult,
-                    })
+        <div className="text-white py-3 flex gap-5">
+          <div className="lg:w-1/3 hidden lg:block">
+            <Filters />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 h-full gap-y-5 md:gap-x-10 w-full lg:w-2/3">
+            {!isLoading
+              ? filteredData.map(
+                  ({
+                    id,
+                    title,
+                    category,
+                    picture,
+                    fullCourseDuration,
+                    difficult,
+                  }: any) => (
+                    <Link
+                      onClick={() =>
+                        dispatch(
+                          pickCourse({
+                            id,
+                            title,
+                            category,
+                            fullCourseDuration,
+                            difficult,
+                            picture,
+                          })
+                        )
+                      }
+                      to={`/courses/${id}`}
+                      key={id}
+                    >
+                      <Suspense
+                        fallback={
+                          <Rings
+                            visible={true}
+                            height="80"
+                            width="80"
+                            color="#fff"
+                            ariaLabel="rings-loading"
+                          />
+                        }
+                      >
+                        <Card
+                          id={id}
+                          fullCourseDuration={fullCourseDuration}
+                          image={picture}
+                          title={title}
+                          category={category}
+                          key={id}
+                        />
+                      </Suspense>
+                    </Link>
                   )
-                }
-                to={`/courses/${id}`}
-                key={id}
-              >
-                <Card
-                  id={id}
-                  title={title}
-                  category={category}
-                  image={image}
-                  fullCourseDuration={fullCourseDuration}
-                />
-              </Link>
-            )
-          )}
+                )
+              : [...new Array(15)].map((_, index) => (
+                  <CourseSkeleton key={index} />
+                ))}
+          </div>
         </div>
       </div>
     </>

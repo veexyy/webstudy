@@ -41,24 +41,37 @@ export default function PersonalAccount() {
     <>
       <div className="text-white">
         {data.length === 0 ? (
-          <div className=" font-montserrat">
-            Привет! Курсы можно выбрать в
-            <Link className="underline" to={"/courses"}>
+          <div className="font-montserrat mobile:text-base text-sm text-center">
+            Привет! Курсы можно выбрать в&nbsp;
+            <Link
+              className="underline text-sm text-center mobile:text-base"
+              to={"/courses"}
+            >
               каталоге
             </Link>
           </div>
         ) : (
-          <div className=" font-montserrat">
+          <div className="font-montserrat text-sm mobile:text-base text-center">
             Привет! Сейчас ты проходишь эти курсы:
           </div>
         )}
       </div>
-
-      {data.map(({ title, id, fullCourseDuration }, i) => (
-        <Link to={`/account/course/${id}`} onClick={() => writeId(id)} key={i}>
-          <Card title={title} id={id} fullCourseDuration={fullCourseDuration} />
-        </Link>
-      ))}
+      <div className="flex flex-col md:grid grid-cols-2 lg:grid-cols-3 md:gap-5 gap-2 mt-3">
+        {data.map(({ title, id, fullCourseDuration, picture }, i) => (
+          <Link
+            to={`/account/course/${id}`}
+            onClick={() => writeId(id)}
+            key={i}
+          >
+            <Card
+              title={title}
+              id={id}
+              fullCourseDuration={fullCourseDuration}
+              image={picture}
+            />
+          </Link>
+        ))}
+      </div>
     </>
   );
 }

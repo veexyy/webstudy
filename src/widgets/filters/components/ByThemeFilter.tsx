@@ -2,7 +2,8 @@ import { getDatabase, onValue, ref } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../components/shared/store/hooks/redux-hooks";
 import { setThemeFilter } from "../../../components/shared/store/filterSlice";
-
+import { Checkbox } from "@mui/material";
+import { red } from "@mui/material/colors";
 export default function ByThemeFilter() {
   const db = getDatabase();
   const themes: any = [
@@ -13,6 +14,7 @@ export default function ByThemeFilter() {
   const dataSet = new Set<string>();
   const [data, setData] = useState<string[]>([]);
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     try {
@@ -49,8 +51,14 @@ export default function ByThemeFilter() {
             (item) =>
               item === theme && (
                 <div className="flex gap-3 items-center" key={i}>
-                  <input
-                    type="checkbox"
+                  <Checkbox
+                    size="small"
+                    sx={{
+                      color: "white",
+                      "&.Mui-checked": {
+                        color: red[500],
+                      },
+                    }}
                     value={value}
                     checked={selectedValues.includes(theme)}
                     onChange={() => handleCheckboxChange(theme)}

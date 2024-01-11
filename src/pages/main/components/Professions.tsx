@@ -7,18 +7,25 @@ export default function Professions() {
       title: "Front-end разработчик",
       fullCourseDuration: "12 месяцев",
       id: "1",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/photos%2F1.png?alt=media&token=892c5e7e-7608-47fb-9b81-9d44e4654df7",
     },
     {
       title: "Специалист по нейросетям",
       fullCourseDuration: "12 месяцев",
       id: "2",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/photos%2F2.png?alt=media&token=6a5e7e9a-9d7f-4f2c-9b9d-8b8d8f8d8f8d",
     },
     {
       title: "Системный инженер",
       fullCourseDuration: "12 месяцев",
       id: "3",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/photos%2F4.png?alt=media&token=633e8807-add1-479b-bb7f-09e6dffc5dd7",
     },
   ];
+
   return (
     <>
       <div className="border border-white shadow shadow-[#42FF00] max-w-[1100px] mx-auto my-24 flex flex-col justify-center items-center rounded-md px-3">
@@ -28,11 +35,9 @@ export default function Professions() {
         </span>
         <div className="flex flex-col lg:flex-row gap-3 lg:gap-10 mb-10">
           {data.map((item) => (
-            <div
-              key={item.id}
-              className="bg-black rounded-xl w-[250px] lg:w-[300px]"
-            >
+            <div key={item.id} className="bg-black rounded-xl w-[310px]">
               <Card
+                image={item.image}
                 title={item.title}
                 fullCourseDuration={item.fullCourseDuration}
                 id={item.id}

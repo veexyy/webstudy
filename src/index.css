@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "akony";
+  src: url("./fonts/AKONY.woff2") format("woff2");
+}

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { ColumnDataType } from "./FooterLinks";
+import { useAppDispatch } from "../shared/store/hooks/redux-hooks";
+import { setDirectionFilter } from "../shared/store/filterSlice";
 
 export function Column({ title, links }: ColumnDataType) {
+  const dispatch = useAppDispatch();
   return (
     <div>
       <div
@@ -11,12 +14,17 @@ export function Column({ title, links }: ColumnDataType) {
         {title}
       </div>
       <ul className="flex flex-col gap-2 items-center md:items-start">
-        {links.map(({ link, name }, i) => (
+        {links.map(({ link, name, category }, i) => (
           <li
             className="font-bold font-montserrat hover:underline underline-offset-4"
             key={i}
           >
-            <Link to={link}>{name}</Link>
+            <Link
+              onClick={() => dispatch(setDirectionFilter(category))}
+              to={link}
+            >
+              {name}
+            </Link>
           </li>
         ))}
       </ul>

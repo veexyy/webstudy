@@ -12,6 +12,9 @@ import {
   useAppSelector,
 } from "../../components/shared/store/hooks/redux-hooks";
 import { getUser } from "../../components/shared/store/userSlice";
+import WhatYouWillCan from "../../widgets/what-you-will-can/WhatYouWillCan";
+import Ratings from "../../widgets/ratings/Ratings";
+import { PayWidget } from "../../widgets/paywidget/PayWidget";
 export default function Course() {
   const nav = useNavigate();
   const dispatch = useAppDispatch();
@@ -35,6 +38,7 @@ export default function Course() {
         category: `${pickedCourse.pickedCourseCategory}`,
         fullCourseDuration: `${pickedCourse.pickedCourseDuration}`,
         difficult: `${pickedCourse.pickedCourseDifficult}`,
+        picture: `${pickedCourse.pickedCoursePicture}`,
       });
     } catch (error) {
       console.log(error);
@@ -53,7 +57,16 @@ export default function Course() {
       >
         &#8592; Вернуться назад
       </div>
-      <IndividualCourse writeUserData={writeUserData} />
+      <div className="flex flex-col justify-center items-center py-12 gap-24">
+        <IndividualCourse writeUserData={writeUserData} />
+        <WhatYouWillCan />
+        <div>
+          <Ratings />
+        </div>
+        <div>
+          <PayWidget />
+        </div>
+      </div>
     </>
   );
 }

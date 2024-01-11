@@ -1,10 +1,9 @@
 import { inputStyle } from "../../components/shared/consts";
 import { useForm } from "react-hook-form";
 import { FormValues } from "../login/LoginForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
 import axiosApiInterceptor from "../../api";
 export type UserType = {
   email: string;
@@ -173,7 +172,7 @@ export default function RegisterForm() {
         className={
           isValid
             ? `${inputStyle} cursor-pointer font-bold`
-            : `${inputStyle} cursor-default bg-gray-400 ring-0`
+            : `${inputStyle} cursor-default text-gray-500 bg-gray-400 ring-0`
         }
         type="submit"
         onClick={() => onSubmit}

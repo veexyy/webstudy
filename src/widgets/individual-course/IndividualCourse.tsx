@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import CourseButton from "./components/CourseButton";
-import CourseDate from "./components/CourseDate";
-import CourseImage from "./components/CourseImage";
-import CourseSubtitle from "./components/CourseSubtitle";
-import CourseTitle from "./components/CourseTitle";
+import { lazy, Suspense } from "react";
+const CourseButton = lazy(() => import("./components/CourseButton"));
+const CourseDate = lazy(() => import("./components/CourseDate"));
+const CourseImage = lazy(() => import("./components/CourseImage"));
+const CourseSubtitle = lazy(() => import("./components/CourseSubtitle"));
+const CourseTitle = lazy(() => import("./components/CourseTitle"));
 import { AxiosResponse } from "axios";
 import { useMatch } from "react-router-dom";
 import axiosApiInterceptor from "../../api";
+import { Rings } from "react-loader-spinner";
 export function IndividualCourse(writeUserData: any) {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState("");
@@ -26,7 +28,7 @@ export function IndividualCourse(writeUserData: any) {
       if (res.data[paramsId]) {
         setTitle(res.data[paramsId].title);
         setDescription(res.data[paramsId].subtitle);
-        setPhoto(res.data[paramsId].url);
+        setPhoto(res.data[paramsId].picture);
         setTime(res.data[paramsId].fullCourseDuration);
         setId(res.data[paramsId].id);
       }
@@ -39,16 +41,21 @@ export function IndividualCourse(writeUserData: any) {
   }, [id]);
   return (
     <>
-      <div className="flex flex-col md:flex-row max-w-[870px] gap-10 items-center border border-white rounded-lg p-4 ">
-        <CourseImage className="h-full w-[300px]" src={photo}></CourseImage>
-        <div className="flex flex-col gap-8">
-          <CourseTitle>{title}</CourseTitle>
-          <CourseSubtitle>{description}</CourseSubtitle>
-          <div className="flex justify-between items-center">
-            <CourseDate>{time}</CourseDate>
-            <CourseButton writeUserData={writeUserData}></CourseButton>
+      <div className="flex flex-col md:flex-row w-full max-w-[1024px] lg:max-w-[1100px] bg-black justify-between gap-10 items-center border border-white rounded-lg p-4 md:p-8 relative">
+        <Suspense fallback={<Rings color="white" height={80} width={80} />}>
+          <CourseImage
+            className="w-[100px] sm:w-[150px] lg:w-[200px]"
+            src={photo}
+          />
+          <div className="flex flex-col gap-3 md:gap-8 md:w-2/3">
+            <CourseTitle>{title}</CourseTitle>
+            <CourseSubtitle>{description}</CourseSubtitle>
+            <div className="flex justify-between items-center gap-3">
+              <CourseDate>{time}</CourseDate>
+              <CourseButton writeUserData={writeUserData}></CourseButton>
+            </div>
           </div>
-        </div>
+        </Suspense>
       </div>
     </>
   );

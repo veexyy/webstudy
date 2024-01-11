@@ -2,6 +2,8 @@ import { getDatabase, onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../components/shared/store/hooks/redux-hooks";
 import { setSpeakersFilter } from "../../../components/shared/store/filterSlice";
+import { Checkbox } from "@mui/material";
+import { red } from "@mui/material/colors";
 
 export default function BySpeakersFilters() {
   const db = getDatabase();
@@ -43,9 +45,15 @@ export default function BySpeakersFilters() {
     <>
       <div className="text-white">Спикеры</div>
       {data.map((item: any, i: any) => (
-        <div className="flex gap-3">
-          <input
-            type="checkbox"
+        <div key={i} className="flex gap-3 items-center">
+          <Checkbox
+            size="small"
+            sx={{
+              color: "white",
+              "&.Mui-checked": {
+                color: red[500],
+              },
+            }}
             value={item}
             key={i}
             onChange={() => handleCheckboxChange(item)}

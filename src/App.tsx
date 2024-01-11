@@ -1,28 +1,30 @@
 import { Route, Routes, Navigate, useLocation, Outlet } from "react-router-dom";
-import PasswordRecover from "./widgets/password-recover/PasswordRecover";
-import NotFound from "./pages/404/not-found";
-import Background from "./components/shared/background";
-import AuthLayout from "./components/layouts/AuthLayout";
-import LoginPage from "./pages/login/login-page";
-import RegisterPage from "./pages/register-page/register-page";
-import PersonalAccount from "./pages/account/personal-account";
-import { LKLayout } from "./components/layouts/LKLayout";
-import About from "./pages/about/About";
-import { Layout } from "./components/layouts/MainLayout";
-import PrivateRoute from "./components/shared/private-route";
-import Webinars from "./pages/webinars/webinars";
-import Courses from "./pages/courses/courses";
-import Course from "./pages/course/course";
-import CourseInfo from "./pages/course/course-info";
-import MainPage from "./pages/main/MainPage";
+import { lazy } from "react";
 
+import AuthLayout from "./components/layouts/AuthLayout";
+import LKLayout from "./components/layouts/LKLayout";
+import Layout from "./components/layouts/MainLayout";
+import Background from "./components/shared/background";
+const PasswordRecover = lazy(
+  () => import("./widgets/password-recover/PasswordRecover")
+);
+const NotFound = lazy(() => import("./pages/404/not-found"));
+const LoginPage = lazy(() => import("./pages/login/login-page"));
+const RegisterPage = lazy(() => import("./pages/register-page/register-page"));
+const PersonalAccount = lazy(() => import("./pages/account/personal-account"));
+const About = lazy(() => import("./pages/about/About"));
+const PrivateRoute = lazy(() => import("./components/shared/private-route"));
+const Webinars = lazy(() => import("./pages/webinars/webinars"));
+const Courses = lazy(() => import("./pages/courses/courses"));
+const Course = lazy(() => import("./pages/course/course"));
+const CourseInfo = lazy(() => import("./pages/course/course-info"));
+const MainPage = lazy(() => import("./pages/main/MainPage"));
 function App() {
   const location = useLocation();
   const user = localStorage.getItem("tokens");
   const pathName = location.pathname;
-
   return (
-    <div className="bg-black ">
+    <div className="bg-black min-h-screen">
       <Background />
       {user &&
         (["/login", "/register", "/forgot-password"].includes(pathName) ? (
@@ -30,33 +32,27 @@ function App() {
         ) : (
           <Outlet />
         ))}
-
-      <div className=" min-h-screen max-w-[1536px] mx-auto">
-        <Routes>
-          <Route element={<AuthLayout />}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/forgot-password" element={<PasswordRecover />} />
+      <Routes>
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<PasswordRecover />} />{" "}
+        </Route>
+        <Route element={<Layout />}>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/webinars" element={<Webinars />}></Route>
+          <Route path="/" element={<MainPage />}></Route>
+        </Route>
+        <Route element={<LKLayout />}>
+          <Route element={<PrivateRoute />}>
+            <Route path="/courses" element={<Courses />}></Route>
+            <Route path="/account" element={<PersonalAccount />}></Route>
+            <Route path="/courses/:id" element={<Course />}></Route>
+            <Route path="/account/course/:id" element={<CourseInfo />}></Route>
           </Route>
-          <Route element={<Layout />}>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/webinars" element={<Webinars />}></Route>
-            <Route path="/" element={<MainPage />}></Route>
-          </Route>
-          <Route element={<LKLayout />}>
-            <Route element={<PrivateRoute />}>
-              <Route path="/courses" element={<Courses />}></Route>
-              <Route path="/account" element={<PersonalAccount />}></Route>
-              <Route path="/courses/:id" element={<Course />}></Route>
-              <Route
-                path="/account/course/:id"
-                element={<CourseInfo />}
-              ></Route>
-            </Route>
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

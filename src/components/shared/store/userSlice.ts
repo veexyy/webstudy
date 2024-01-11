@@ -11,7 +11,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
       }
     );
     localStorage.setItem("localId", res.data.users[0].localId);
-    return JSON.parse(JSON.stringify(res.data.users[0].localId));
+    return JSON.parse(JSON.stringify(localStorage.getItem("localId")));
   } catch (error) {
     console.log(error);
   }
@@ -28,7 +28,7 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getUser.fulfilled, (state, action) => {
-      state.localId = action.payload.localId;
+      state.localId = action.payload;
       state.status = "fulfilled";
       state.error = null;
     });

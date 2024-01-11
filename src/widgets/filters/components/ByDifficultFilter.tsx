@@ -5,6 +5,7 @@ import {
   setDifficultyFilter,
 } from "../../../components/shared/store/filterSlice";
 import { useEffect, useState } from "react";
+import { blue } from "@mui/material/colors";
 
 export default function ByDifficultFilter(): JSX.Element {
   const [checked, setChecked] = useState<string>("any");
@@ -39,7 +40,7 @@ export default function ByDifficultFilter(): JSX.Element {
             value="any"
             size="small"
             checked={checked === "any"}
-            sx={{ color: "white", "&.Mui-checked": { color: "white" } }}
+            sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
             onChange={anyCategory}
           />
           Любой
@@ -51,7 +52,7 @@ export default function ByDifficultFilter(): JSX.Element {
               value={key}
               checked={checked === key.toString()}
               onChange={handleChange}
-              sx={{ color: "white", "&.Mui-checked": { color: "white" } }}
+              sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
             />
             {value}
           </div>

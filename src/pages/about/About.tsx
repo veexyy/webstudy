@@ -1,7 +1,16 @@
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { ContactInformation } from "../../widgets/contact-information/ContactInformation";
 import { OurAchievments } from "../../widgets/our-achievments/OurAchievments";
+import { useState } from "react";
+import { AboutSkeleton } from "../../components/shared/skeletons/skeletons";
 
 export default function About() {
+  const [url, setUrl] = useState("");
+  const storage = getStorage();
+  const storageRef = ref(storage, "photos/photo_2024-01-04_13-20-09.jpg");
+  getDownloadURL(storageRef).then((url) => {
+    setUrl(url);
+  });
   return (
     <div className="text-white">
       <section>
@@ -19,11 +28,12 @@ export default function About() {
           Основатели платформы
         </h1>
         <div className="flex items-center flex-col gap-3">
-          <iframe
-            className="border-none px-3 sm:w-[640px] h-[360px]"
-            src="https://drive.google.com/file/d/1XN67sPXIs8YVAfhuNEtxt8AKZhKQLqnc/preview"
-            allow="autoplay"
-          ></iframe>
+          {url ? (
+            <img className="w-[200px] md:w-[400px]" src={url} alt="Director" />
+          ) : (
+            <AboutSkeleton />
+          )}
+
           <h1 className="text-xl md:text-3xl font-bold">Илья Бондарь</h1>
           <p className="text-sm">основатель и директор</p>
         </div>

@@ -11,7 +11,7 @@ export const getData = createAsyncThunk("data/getData", async () => {
         JSON.parse(localStorage.getItem("tokens")!).idToken
       }`
     );
-    return res.data;
+    return await res.data;
   } catch (error) {
     console.log(error);
   }
@@ -26,6 +26,7 @@ const initialState = {
   data: [],
   error: null,
   status: "",
+  isLoading: true,
 };
 
 const filterSlice = createSlice({
@@ -71,15 +72,18 @@ const filterSlice = createSlice({
         state.data = [];
         state.status = "loading";
         state.error = null;
+        state.isLoading = true;
       })
       .addCase(getData.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "resolved";
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(getData.rejected, (state) => {
         state.data = [];
         state.status = "rejected";
+        state.isLoading = false;
       });
   },
 });
