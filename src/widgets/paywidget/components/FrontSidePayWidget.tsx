@@ -2,7 +2,6 @@ import { borderDesign } from "../../../components/shared/consts";
 import { frontSidePayWidgetParagraph } from "../../../components/shared/consts";
 export function FrontSidePayWidget({ open, setOpen }: any) {
   return (
-    //здесь данные подгрузятся с сервера
     <div className="text-white sm:py-8 sm:px-10 px-3">
       <div className={borderDesign + "sm:pt-10 pt-5 pl-5 pr-16"}>
         <div

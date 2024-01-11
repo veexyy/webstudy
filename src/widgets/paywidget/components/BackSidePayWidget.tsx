@@ -5,7 +5,7 @@ import LoginThroughVK from "./LoginThroughVK";
 
 export function BackSidePayWidget({ children }: PropsWithChildren) {
   return (
-    <div className="text-white relative">
+    <div className="text-white relative flex flex-col px-8">
       <div className="flex sm:gap-10 items-center flex-col sm:flex-row">
         <BackSidePayWidgetInfo>{children}</BackSidePayWidgetInfo>
       </div>
