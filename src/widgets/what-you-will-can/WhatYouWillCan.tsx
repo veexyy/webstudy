@@ -3,7 +3,7 @@ import Title from "./components/Title";
 
 export default function WhatYouWillCan() {
   return (
-    <div className="flex flex-col md:flex-row lg:justify-between border border-white rounded-xl max-w-[1900px] gap-3 md:gap-10 items-center">
+    <div className="flex w-full flex-col  sm:flex-row lg:justify-between bg-black py-10 px-4 border border-white rounded-xl lg:max-w-[1100px] max-w-[1024px] gap-3 md:gap-10 items-center">
       <Title />
       <Subtitle></Subtitle>
     </div>
