@@ -1,6 +1,6 @@
 import { getDatabase, onValue, ref } from "firebase/database";
 import Filters from "../../widgets/filters/Filters";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppSelector } from "../../components/shared/store/hooks/redux-hooks";
 import Title from "../../components/shared/title";
 
