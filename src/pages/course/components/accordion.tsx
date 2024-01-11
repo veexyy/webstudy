@@ -79,8 +79,19 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ index, data }) => {
         </ul>
         <MdDone className={done ? "visible" : "hidden"} />
       </AccordionSummary>
-      <AccordionDetails>
-        <YouTube videoId="NErrGZ64OdE" onEnd={handler} />
+      <AccordionDetails
+        sx={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      >
+        <YouTube
+          opts={{
+            width: "100%",
+            height: "100%",
+          }}
+          className="w-[340px] h-[220px] lg:w-[640px] lg:h-[360px] rounded-2xl"
+          videoId="NErrGZ64OdE"
+          onEnd={handler}
+          loading="lazy"
+        />
       </AccordionDetails>
     </Accordion>
   );

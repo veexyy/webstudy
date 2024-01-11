@@ -37,27 +37,30 @@ export default function CourseInfo() {
   return (
     <>
       <div
-        className="text-white cursor-pointer font-montserrat max-w-full flex"
+        className="text-white cursor-pointer font-montserrat max-w-full flex mb-4"
         onClick={handlerExit}
       >
         ← Вернуться назад
       </div>
-      <div className="flex justify-between gap-16">
-        <div className="text-white flex flex-col w-1/3 h-1/2">
+      <div className="flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-16">
+        <div className="text-white flex flex-col lg:w-1/3 h-1/2">
           {courseData.length > 0 && courseId && (
             <>
-              {courseData.map(({ title, fullCourseDuration, id }, i) => (
-                <Card
-                  key={i}
-                  title={title}
-                  fullCourseDuration={fullCourseDuration}
-                  id={id}
-                />
-              ))}
+              {courseData.map(
+                ({ title, fullCourseDuration, id, picture }, i) => (
+                  <Card
+                    key={i}
+                    title={title}
+                    fullCourseDuration={fullCourseDuration}
+                    id={id}
+                    image={picture}
+                  />
+                )
+              )}
             </>
           )}
         </div>
-        <div className="w-2/3">
+        <div className="lg:w-2/3">
           <CourseAccordion />
         </div>
       </div>
