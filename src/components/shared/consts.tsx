@@ -18,4 +18,4 @@ export const choosePaymentType: string[] = [
 ];
 export const ourAchievments: string[] = ["356  курсов", "190 000+ студентов"];
 export const inputStyle: string =
-  "bg-white rounded-xl p-3 ring-2 ring-blue-600 focus:outline-none w-full font-montserrat";
+  "placeholder:text-[#02C6F6] text-[#02C6F6] bg-transparent rounded-xl p-3 ring-2 ring-blue-600 focus:outline-none w-full font-montserrat";
