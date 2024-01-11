@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import { useState } from "react";
 import axiosApiInterceptor from "../../api";
+import { inputStyle } from "../../components/shared/consts";
 export type handleAuthType = {
   email: string;
   password: string;
@@ -30,8 +31,6 @@ export function LoginForm() {
   const navigate = useNavigate();
   const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
   const [showPass, setShowPass] = useState(false);
-  const inputStyle: string =
-    "bg-white rounded-xl p-3 ring-2 ring-blue-600 focus:outline-none w-full";
   const onSubmit = async (payload: any) => {
     try {
       let res = await axiosApiInterceptor.post(
@@ -143,8 +142,8 @@ export function LoginForm() {
           disabled={!isValid}
           className={
             isValid
-              ? `${inputStyle} cursor-pointer font-bold`
-              : `${inputStyle} cursor-default bg-gray-400 ring-0`
+              ? `${inputStyle} cursor-pointer`
+              : `${inputStyle} cursor-default text-gray-500  bg-gray-400 ring-0`
           }
           type="submit"
         >
