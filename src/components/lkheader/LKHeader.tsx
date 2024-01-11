@@ -10,8 +10,8 @@ export function LKHeader() {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <div className="flex bg-transparent justify-between px-3 items-center lg:px-6 desktop:px-[30px] h-fit max-w-[1548px] mx-auto relative z-[1]">
-        <Logo />
+      <div className="flex bg-transparent justify-between px-3 items-center lg:px-6 desktop:px-[30px] h-fit max-w-[1548px] mx-auto relative z-[1] py-2">
+        <Logo className="-ml-7 lg:-ml-10 py-2" />
         <HamburgerMenu open={open} setOpen={setOpen} />
         {open && <MobileMenu open={open} setOpen={setOpen} />}
         <div className="hidden items-center gap-10 lg:flex">
