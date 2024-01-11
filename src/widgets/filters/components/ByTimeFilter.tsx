@@ -8,6 +8,7 @@ import {
   useAppSelector,
 } from "../../../components/shared/store/hooks/redux-hooks";
 import { Radio, RadioGroup } from "@mui/material";
+import { blue } from "@mui/material/colors";
 export default function ByDirectionFilter() {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.courseFilters.data);
@@ -45,7 +46,7 @@ export default function ByDirectionFilter() {
               size="small"
               checked={checked === "any"}
               onChange={anyCategory}
-              sx={{ color: "white", "&.Mui-checked": { color: "white" } }}
+              sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
             />
             Любая
           </div>
@@ -56,7 +57,7 @@ export default function ByDirectionFilter() {
                 value={value}
                 checked={checked === value}
                 onChange={handleChange}
-                sx={{ color: "white", "&.Mui-checked": { color: "white" } }}
+                sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
               />
               {value}
             </div>
