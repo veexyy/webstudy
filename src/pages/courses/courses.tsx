@@ -129,7 +129,7 @@ export default function Courses() {
                   <CourseSkeleton key={index} />
                 ))}
             <button
-              className="text-white font-montserrat font-bold border border-white px- py-2 rounded-xl justify-self-center col-span-3"
+              className="text-white font-montserrat font-bold border border-white px-8 py-2 rounded-xl justify-self-center col-span-3"
               onClick={() => setVisibleItems(visibleItems + 9)}
             >
               Показать еще
