@@ -25,9 +25,10 @@ export interface Course {
 }
 export default function Courses() {
   const dispatch = useAppDispatch();
+  const [visibleItems, setVisibleItems] = useState(9);
   const [open, setOpen] = useState<boolean>(false);
   const [searchCourses, setSearchCourses] = useState<string>("");
-  const data = useAppSelector((state) => state.courseFilters.data);
+  const data: Course[] = useAppSelector((state) => state.courseFilters.data);
   const isLoading = useAppSelector((state) => state.courseFilters.isLoading);
   useEffect(() => {
     dispatch(getData());
@@ -41,11 +42,13 @@ export default function Courses() {
   const directionFilter = useAppSelector(
     (state) => state.courseFilters.directionFilter
   );
+  const slicedData = data.slice(0, visibleItems);
   const filteredData = data.filter((course: Course) => {
     return (
       course
         .title!.toLocaleLowerCase()
         .includes(searchCourses.toLocaleLowerCase()) &&
+      slicedData.includes(course) &&
       (difficultyFilter === "any" || +difficultyFilter === course.difficult) &&
       (durationFilter === "any" ||
         durationFilter === course.fullCourseDuration) &&
@@ -125,6 +128,12 @@ export default function Courses() {
               : [...new Array(15)].map((_, index) => (
                   <CourseSkeleton key={index} />
                 ))}
+            <button
+              className="text-white font-montserrat font-bold border border-white px- py-2 rounded-xl justify-self-center col-span-3"
+              onClick={() => setVisibleItems(visibleItems + 9)}
+            >
+              Показать еще
+            </button>
           </div>
         </div>
       </div>
