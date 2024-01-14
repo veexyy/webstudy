@@ -63,4 +63,24 @@ const ReviewsSkeleton = (props: any) => (
     <rect x="233" y="82" rx="16" ry="16" width="822" height="130" />
   </ContentLoader>
 );
-export { CourseSkeleton, FilterSkeleton, AboutSkeleton, ReviewsSkeleton };
+const FilterSkeletonCheckbox = (props: any) => (
+  <ContentLoader
+    speed={1}
+    width={200}
+    height={40}
+    viewBox="0 0 200 40"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="2" y="10" rx="0" ry="0" width="16" height="16" />{" "}
+    <rect x="34" y="17" rx="0" ry="0" width="202" height="8" />
+  </ContentLoader>
+);
+export {
+  CourseSkeleton,
+  FilterSkeleton,
+  AboutSkeleton,
+  ReviewsSkeleton,
+  FilterSkeletonCheckbox,
+};
