@@ -31,7 +31,7 @@ export function LKHeader() {
           />
         </div>
       </div>
-      <Modal showModal={showModal} />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }
