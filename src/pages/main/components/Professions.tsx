@@ -40,7 +40,7 @@ export default function Professions() {
         <div className="flex flex-col lg:flex-row gap-3 lg:gap-10 mb-10">
           {data.map((item) => (
             <div key={item.id} className="bg-black rounded-xl w-[310px]">
-              <Link to={item.link}>
+              <Link to={item.link} onClick={() => window.scrollTo(0, 0)}>
                 <Card
                   image={item.image}
                   title={item.title}
