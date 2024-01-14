@@ -3,7 +3,7 @@ import RatingsSubtitle from "./components/RatingsSubtitle";
 import RatingsTitle from "./components/RatingsTitle";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { ReviewsSkeleton } from "../../components/shared/skeletons/skeletons";
+import { TailSpin } from "react-loader-spinner";
 export default function Ratings() {
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
@@ -70,8 +70,8 @@ export default function Ratings() {
 
         <div className="flex flex-col border border-white max-w-[1100px] mx-auto rounded-xl p-5 gap-6">
           {isLoading ? (
-            <div className="flex flex-col sm:flex-row w-[200px] sm:w-[400px] md:w-[600px] justify-center lg:w-full">
-              <ReviewsSkeleton />
+            <div className="flex flex-col sm:flex-row w-full mobile:w-[400px] sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1100px] h-[300px] sm:h-[242px] justify-center items-center">
+              <TailSpin height={100} width={400} color="white" />
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row justify-center items-center sm:items-stretch sm:justify-between gap-3">
