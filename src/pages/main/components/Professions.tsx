@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import WidgetTitle from "../../../components/shared/widgettitle";
-import Card from "../../courses/components/card";
-
+import { lazy, Suspense } from "react";
+const Card = lazy(() => import("../../courses/components/card"));
+import { TailSpin } from "react-loader-spinner";
 export default function Professions() {
   const data = [
     {
@@ -37,17 +38,22 @@ export default function Professions() {
         <span className="text-white font-montserrat text-center text-base lg:text-xl mb-8 lg:mb-16">
           Не останетесь без работы даже через 20 лет
         </span>
+
         <div className="flex flex-col lg:flex-row gap-3 lg:gap-10 mb-10">
           {data.map((item) => (
-            <div key={item.id} className="bg-black rounded-xl w-[310px]">
-              <Link to={item.link} onClick={() => window.scrollTo(0, 0)}>
-                <Card
-                  image={item.image}
-                  title={item.title}
-                  fullCourseDuration={item.fullCourseDuration}
-                  id={item.id}
-                />
-              </Link>
+            <div key={item.id} className="bg-black rounded-xl w-[300px]">
+              <Suspense
+                fallback={<TailSpin height={30} width={30} color="white" />}
+              >
+                <Link to={item.link} onClick={() => window.scrollTo(0, 0)}>
+                  <Card
+                    image={item.image}
+                    title={item.title}
+                    fullCourseDuration={item.fullCourseDuration}
+                    id={item.id}
+                  />
+                </Link>{" "}
+              </Suspense>
             </div>
           ))}
         </div>

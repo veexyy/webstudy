@@ -17,6 +17,7 @@ export default function WeAreInMedia() {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-12 my-4 lg:my-[40px] px-3">
         {data.map((item, i) => (
           <iframe
+            loading="lazy"
             key={i}
             src={item.link}
             title={item.title}

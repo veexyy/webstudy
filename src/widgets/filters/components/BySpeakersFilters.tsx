@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../../components/shared/store/hooks/redux-hoo
 import { setSpeakersFilter } from "../../../components/shared/store/filterSlice";
 import { Checkbox } from "@mui/material";
 import { red } from "@mui/material/colors";
+import { FilterSkeletonCheckbox } from "../../../components/shared/skeletons/skeletons";
 
 export default function BySpeakersFilters() {
   const db = getDatabase();
@@ -44,25 +45,31 @@ export default function BySpeakersFilters() {
   return (
     <>
       <div className="text-white">Спикеры</div>
-      {data.map((item: any, i: any) => (
-        <div key={i} className="flex gap-3 items-center">
-          <Checkbox
-            size="small"
-            sx={{
-              color: "white",
-              "&.Mui-checked": {
-                color: red[500],
-              },
-            }}
-            value={item}
-            key={i}
-            onChange={() => handleCheckboxChange(item)}
-            lang="ru"
-            className="text-white"
-          />
-          {item}
-        </div>
-      ))}
+      {data.length > 0
+        ? data.map((item: any, i: any) => (
+            <div key={i} className="flex gap-3 items-center">
+              <Checkbox
+                size="small"
+                sx={{
+                  color: "white",
+                  "&.Mui-checked": {
+                    color: red[500],
+                  },
+                }}
+                value={item}
+                key={i}
+                onChange={() => handleCheckboxChange(item)}
+                lang="ru"
+                className="text-white"
+              />
+              {item}
+            </div>
+          ))
+        : new Array(3).fill(0).map((_, i) => (
+            <div className="flex flex-col gap-2 w-full">
+              <FilterSkeletonCheckbox key={i} />
+            </div>
+          ))}
     </>
   );
 }
