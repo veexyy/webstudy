@@ -97,7 +97,7 @@ export default function Courses() {
                             difficult,
                             picture,
                           })
-                        )
+                        ) && window.scrollTo(0, 0)
                       }
                       to={`/courses/${id}`}
                       key={id}
@@ -128,8 +128,9 @@ export default function Courses() {
               : [...new Array(15)].map((_, index) => (
                   <CourseSkeleton key={index} />
                 ))}
+
             <button
-              className="text-white font-montserrat font-bold border border-white px-8 py-2 rounded-xl justify-self-center col-span-3"
+              className="text-white font-montserrat font-bold border border-white px-8 py-2 rounded-xl justify-self-center col-span-1 md:col-span-2 xl:col-span-3"
               onClick={() => setVisibleItems(visibleItems + 9)}
             >
               Показать еще
