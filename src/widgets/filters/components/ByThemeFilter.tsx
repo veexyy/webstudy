@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../../components/shared/store/hooks/redux-hoo
 import { setThemeFilter } from "../../../components/shared/store/filterSlice";
 import { Checkbox } from "@mui/material";
 import { red } from "@mui/material/colors";
+import { FilterSkeletonCheckbox } from "../../../components/shared/skeletons/skeletons";
 export default function ByThemeFilter() {
   const db = getDatabase();
   const themes: any = [
@@ -45,31 +46,38 @@ export default function ByThemeFilter() {
   return (
     <>
       <div className="text-white">Тема</div>
-      {themes.map(({ theme, value }: any, i: any) => (
-        <React.Fragment key={i}>
-          {data.map(
-            (item) =>
-              item === theme && (
-                <div className="flex gap-3 items-center" key={i}>
-                  <Checkbox
-                    size="small"
-                    sx={{
-                      color: "white",
-                      "&.Mui-checked": {
-                        color: red[500],
-                      },
-                    }}
-                    value={value}
-                    checked={selectedValues.includes(theme)}
-                    onChange={() => handleCheckboxChange(theme)}
-                    lang="ru"
-                  />
-                  <div className="text-white">{value}</div>
-                </div>
-              )
-          )}
-        </React.Fragment>
-      ))}
+
+      {data.length > 0
+        ? themes.map(({ theme, value }: any, i: any) => (
+            <React.Fragment key={i}>
+              {data.map(
+                (item) =>
+                  item === theme && (
+                    <div className="flex gap-3 items-center" key={i}>
+                      <Checkbox
+                        size="small"
+                        sx={{
+                          color: "white",
+                          "&.Mui-checked": {
+                            color: red[500],
+                          },
+                        }}
+                        value={value}
+                        checked={selectedValues.includes(theme)}
+                        onChange={() => handleCheckboxChange(theme)}
+                        lang="ru"
+                      />
+                      <div className="text-white">{value}</div>
+                    </div>
+                  )
+              )}
+            </React.Fragment>
+          ))
+        : new Array(3).fill(0).map((_, i) => (
+            <div className="flex flex-col gap-2 w-full">
+              <FilterSkeletonCheckbox key={i} />
+            </div>
+          ))}
     </>
   );
 }
