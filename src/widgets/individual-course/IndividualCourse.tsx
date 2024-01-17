@@ -21,9 +21,7 @@ export function IndividualCourse(writeUserData: any) {
   const getCourse = async (): Promise<void> => {
     try {
       const res: AxiosResponse = await axiosApiInterceptor.get(
-        `${db}/courses.json?auth=${
-          JSON.parse(localStorage.getItem("tokens")!).idToken
-        }`
+        `${db}/courses.json`
       );
       if (res.data[paramsId]) {
         setTitle(res.data[paramsId].title);
