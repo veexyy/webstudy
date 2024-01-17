@@ -3,22 +3,27 @@ import axiosApiInterceptor from "../../../api";
 import { AxiosResponse } from "axios";
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
 export const getUser = createAsyncThunk("user/getUser", async () => {
-  try {
-    const res: AxiosResponse = await axiosApiInterceptor.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`,
-      {
-        idToken: `${JSON.parse(localStorage.getItem("tokens")!).idToken}`,
-      }
-    );
-    localStorage.setItem("localId", res.data.users[0].localId);
-    return JSON.parse(JSON.stringify(localStorage.getItem("localId")));
-  } catch (error) {
-    console.log(error);
+  const token = localStorage.getItem("tokens");
+  if (token) {
+    try {
+      const res: AxiosResponse = await axiosApiInterceptor.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`,
+        {
+          idToken: `${JSON.parse(localStorage.getItem("tokens")!).idToken}`,
+        }
+      );
+      localStorage.setItem("localId", res.data.users[0].localId);
+      return localStorage.getItem("localId");
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    return null;
   }
 });
 
 const initialState = {
-  localId: "",
+  localId: null as string | null | undefined,
   error: null as boolean | null,
   status: "",
 };
