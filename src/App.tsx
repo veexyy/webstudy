@@ -43,11 +43,13 @@ function App() {
           <Route path="/webinars" element={<Webinars />}></Route>
           <Route path="/" element={<MainPage />}></Route>
         </Route>
+        <Route element={user ? <LKLayout /> : <Layout />}>
+          <Route path="/courses" element={<Courses />}></Route>
+          <Route path="/courses/:id" element={<Course />}></Route>
+        </Route>
         <Route element={<LKLayout />}>
           <Route element={<PrivateRoute />}>
-            <Route path="/courses" element={<Courses />}></Route>
             <Route path="/account" element={<PersonalAccount />}></Route>
-            <Route path="/courses/:id" element={<Course />}></Route>
             <Route path="/account/course/:id" element={<CourseInfo />}></Route>
           </Route>
         </Route>

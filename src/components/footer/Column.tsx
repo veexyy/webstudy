@@ -20,7 +20,9 @@ export function Column({ title, links }: ColumnDataType) {
             key={i}
           >
             <Link
-              onClick={() => dispatch(setDirectionFilter(category))}
+              onClick={() =>
+                category ? dispatch(setDirectionFilter(category)) : null
+              }
               to={link}
             >
               {name}

@@ -30,9 +30,6 @@ export default function Courses() {
   const [searchCourses, setSearchCourses] = useState<string>("");
   const data: Course[] = useAppSelector((state) => state.courseFilters.data);
   const isLoading = useAppSelector((state) => state.courseFilters.isLoading);
-  useEffect(() => {
-    dispatch(getData());
-  }, [dispatch]);
   const difficultyFilter = useAppSelector(
     (state) => state.courseFilters.difficultyFilter
   );
@@ -42,19 +39,21 @@ export default function Courses() {
   const directionFilter = useAppSelector(
     (state) => state.courseFilters.directionFilter
   );
-  const slicedData = data.slice(0, visibleItems);
-  const filteredData = data.filter((course: Course) => {
+  const filteredCourses: Course[] = data.filter((course: Course) => {
     return (
       course
         .title!.toLocaleLowerCase()
         .includes(searchCourses.toLocaleLowerCase()) &&
-      slicedData.includes(course) &&
       (difficultyFilter === "any" || +difficultyFilter === course.difficult) &&
       (durationFilter === "any" ||
         durationFilter === course.fullCourseDuration) &&
       (directionFilter === "any" || directionFilter === course.category)
     );
   });
+  const filteredData: Course[] = filteredCourses.slice(0, visibleItems);
+  useEffect(() => {
+    dispatch(getData());
+  }, [dispatch]);
   return (
     <>
       <MobileFilters setOpen={setOpen} open={open} />

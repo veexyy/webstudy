@@ -7,9 +7,7 @@ import { AxiosResponse } from "axios";
 export const getData = createAsyncThunk("data/getData", async () => {
   try {
     const res: AxiosResponse = await axiosApiInterceptor.get(
-      `${db}/courses.json?auth=${
-        JSON.parse(localStorage.getItem("tokens")!).idToken
-      }`
+      `${db}/courses.json`
     );
     return await res.data;
   } catch (error) {

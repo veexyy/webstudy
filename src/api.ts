@@ -10,7 +10,10 @@ axiosApiInterceptor.interceptors.response.use(
   },
   async (err: any) => {
     const req = err.config;
-    if (err.response.status === 401 && !req._retry) {
+    if (
+      (err.response.status === 400 || err.response.status === 401) &&
+      !req._retry
+    ) {
       req._retry = true;
       try {
         const newTokens = await axiosApiInterceptor.post(
