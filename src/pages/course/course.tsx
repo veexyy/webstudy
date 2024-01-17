@@ -25,23 +25,28 @@ export default function Course() {
   const pickedCourse: any = useAppSelector((state) => state.pickedCourse);
   const localId = localStorage.getItem("localId");
   const database = getDatabase();
+  const token = localStorage.getItem("tokens");
 
   const writeUserData = () => {
-    try {
-      const dbRef = ref(
-        database,
-        `users/${localId}/courses/course_${pickedCourse.pickedCourseId}`
-      );
-      set(dbRef, {
-        id: `${pickedCourse.pickedCourseId}`,
-        title: `${pickedCourse.pickedCourseTitle}`,
-        category: `${pickedCourse.pickedCourseCategory}`,
-        fullCourseDuration: `${pickedCourse.pickedCourseDuration}`,
-        difficult: `${pickedCourse.pickedCourseDifficult}`,
-        picture: `${pickedCourse.pickedCoursePicture}`,
-      });
-    } catch (error) {
-      console.log(error);
+    if (token) {
+      try {
+        const dbRef = ref(
+          database,
+          `users/${localId}/courses/course_${pickedCourse.pickedCourseId}`
+        );
+        set(dbRef, {
+          id: `${pickedCourse.pickedCourseId}`,
+          title: `${pickedCourse.pickedCourseTitle}`,
+          category: `${pickedCourse.pickedCourseCategory}`,
+          fullCourseDuration: `${pickedCourse.pickedCourseDuration}`,
+          difficult: `${pickedCourse.pickedCourseDifficult}`,
+          picture: `${pickedCourse.pickedCoursePicture}`,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      nav("/login");
     }
   };
 
