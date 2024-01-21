@@ -1,10 +1,10 @@
 import { Route, Routes, Navigate, useLocation, Outlet } from "react-router-dom";
 import { lazy } from "react";
-
 import AuthLayout from "./components/layouts/AuthLayout";
 import LKLayout from "./components/layouts/LKLayout";
 import Layout from "./components/layouts/MainLayout";
 import Background from "./components/shared/background";
+import Settings from "./pages/settings/Settings";
 const PasswordRecover = lazy(
   () => import("./widgets/password-recover/PasswordRecover")
 );
@@ -51,6 +51,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/account" element={<PersonalAccount />}></Route>
             <Route path="/account/course/:id" element={<CourseInfo />}></Route>
+            <Route path="/settings" element={<Settings />}></Route>
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
