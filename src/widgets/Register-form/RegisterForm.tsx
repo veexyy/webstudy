@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import axiosApiInterceptor from "../../api";
+import { getDatabase, ref, set } from "firebase/database";
 export type UserType = {
   email: string;
   uid: string;
@@ -27,6 +28,7 @@ export default function RegisterForm() {
   } = useForm<FormValues>();
   const navigate = useNavigate();
   const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+  const db = getDatabase();
   const onSubmit = async (payload: any) => {
     try {
       let res = await axiosApiInterceptor.post(
@@ -38,6 +40,9 @@ export default function RegisterForm() {
       );
       navigate("/courses");
       reset();
+      set(ref(db, `users/${res.data.localId}/data`), {
+        picture: `https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/photos%2Fpng-transparent-computer-icons-google-account-user-email-miscellaneous-rim-area.png?alt=media&token=8de3e769-4f37-4de1-9522-05476cb36795`,
+      });
       userData = {
         email: res.data.email,
         token: res.data.idToken,
@@ -51,6 +56,8 @@ export default function RegisterForm() {
           refreshToken: userData.refreshToken,
         })
       );
+      localStorage.setItem("email", res.data.email);
+      localStorage.setItem("localId", res.data.localId);
     } catch (error: any) {
       switch (error.response.data.error.message) {
         case "EMAIL_EXISTS":
@@ -118,7 +125,7 @@ export default function RegisterForm() {
               : "hidden"
           }
           onClick={() => setShowPass(!showPass)}
-        ></RiEyeCloseLine>
+        />
         <RiEyeLine
           className={
             showPass
@@ -126,8 +133,7 @@ export default function RegisterForm() {
               : " hidden"
           }
           onClick={() => setShowPass(!showPass)}
-        ></RiEyeLine>
-        {/*проверка пароля временна. сменим для продакшена. будет проверка по базе данных */}
+        />
         <p className="text-red-500 font-montserrat text-xs absolute">
           {errors.password?.message}
         </p>
