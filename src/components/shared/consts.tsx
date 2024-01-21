@@ -2,6 +2,7 @@ import { Link as LinkType } from "../shared/types";
 export const headerLinks: LinkType[] = [
   { name: "О нас", link: "/about" },
   { name: "Курсы", link: "/courses" },
+  { name: "Настройки", link: "/settings" },
   { name: "Вебинары", link: "/webinars" },
 ];
 export const borderDesign: string = "border border-white rounded-xl ";

@@ -8,6 +8,7 @@ export default function ModalLinks() {
   const dispatch = useDispatch();
   const handleExit = () => {
     localStorage.removeItem("tokens");
+    localStorage.removeItem("avatar");
     navigate("/login");
     dispatch(removeAuth());
     window.location.reload();
@@ -16,6 +17,7 @@ export default function ModalLinks() {
     { name: "О нас", link: "/about" },
     { name: "Вебинары", link: "/webinars" },
     { name: "Курсы", link: "/courses" },
+    { name: "Настройки", link: "/settings" },
   ];
   return (
     <>
