@@ -48,6 +48,7 @@ export function LoginForm() {
         localId: res.data.localId,
         refreshToken: res.data.refreshToken,
       };
+      localStorage.setItem("email", res.data.email);
       localStorage.setItem(
         "tokens",
         JSON.stringify({

@@ -30,10 +30,16 @@ export default function Settings() {
   const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
   const storage = getStorage();
   const writeUserData = () => {
-    set(dbRef, {
-      name: name,
-      lastName: lastName,
-    });
+    if (name && lastName) {
+      try {
+        set(dbRef, {
+          name: name,
+          lastName: lastName,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${apiKey}`;
   const pickFile: React.RefObject<HTMLInputElement> = useRef(null);
@@ -50,10 +56,12 @@ export default function Settings() {
   const getUserData = async () => {
     try {
       onValue(dbRef, (snapshot) => {
-        setDbName(snapshot.val().name);
-        setName(snapshot.val().name);
-        setDbLastName(snapshot.val().lastName);
-        setLastName(snapshot.val().lastName);
+        if (snapshot.val()) {
+          setDbName(snapshot.val().name);
+          setName(snapshot.val().name);
+          setDbLastName(snapshot.val().lastName);
+          setLastName(snapshot.val().lastName);
+        }
       });
     } catch (error) {
       console.log(error);
