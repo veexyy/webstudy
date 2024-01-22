@@ -28,7 +28,7 @@ export default function CourseInfo() {
             }
           });
         } catch (error) {
-          console.log(error);
+          return alert("Данные не получены. Перезагрузите страницу.");
         }
       }
     });

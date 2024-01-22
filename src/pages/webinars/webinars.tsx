@@ -26,7 +26,7 @@ export default function Webinars() {
         })
       );
     } catch (error) {
-      console.log(error);
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
   }, []);
   const themeFilter: any = useAppSelector(

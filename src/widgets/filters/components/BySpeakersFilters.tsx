@@ -27,7 +27,7 @@ export default function BySpeakersFilters() {
         })
       );
     } catch (error) {
-      console.log(error);
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
   }, []);
   const dispatch = useAppDispatch();

@@ -31,7 +31,7 @@ export function IndividualCourse(writeUserData: any) {
         setId(res.data[paramsId].id);
       }
     } catch (error) {
-      console.log(error);
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
   };
   useEffect(() => {

@@ -15,7 +15,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
       localStorage.setItem("localId", res.data.users[0].localId);
       return localStorage.getItem("localId");
     } catch (error) {
-      console.log(error);
+      return alert("Перезагрузите страницу");
     }
   } else {
     return null;
@@ -23,7 +23,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
 });
 
 const initialState = {
-  localId: null as string | null | undefined,
+  localId: null as string | void | null,
   error: null as boolean | null,
   status: "",
 };

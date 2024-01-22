@@ -17,6 +17,7 @@ export default function Ratings() {
     const picRes = await axios.get(
       "https://jsonplaceholder.typicode.com/photos"
     );
+    await Promise.all([response, picRes]);
     setTitle(response.data[id].title);
     setSubtitle(response.data[id].body);
     setPic(picRes.data[id].url);

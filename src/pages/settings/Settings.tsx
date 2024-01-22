@@ -37,7 +37,7 @@ export default function Settings() {
           lastName: lastName,
         });
       } catch (error) {
-        console.log(error);
+        return alert("Что-то пошло не так. Перезагрузите страницу.");
       }
     }
   };
@@ -64,7 +64,7 @@ export default function Settings() {
         }
       });
     } catch (error) {
-      console.log(error);
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
   };
   const handleImageChange = async (e: any) => {

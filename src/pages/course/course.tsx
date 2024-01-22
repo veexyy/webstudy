@@ -43,7 +43,7 @@ export default function Course() {
           picture: `${pickedCourse.pickedCoursePicture}`,
         });
       } catch (error) {
-        console.log(error);
+        return alert("Что-то пошло не так. Перезагрузите страницу.");
       }
     } else {
       nav("/login");
