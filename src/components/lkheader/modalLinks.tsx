@@ -7,8 +7,7 @@ export default function ModalLinks() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleExit = () => {
-    localStorage.removeItem("tokens");
-    localStorage.removeItem("avatar");
+    localStorage.clear();
     navigate("/login");
     dispatch(removeAuth());
     window.location.reload();

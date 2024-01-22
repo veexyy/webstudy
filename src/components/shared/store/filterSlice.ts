@@ -9,9 +9,9 @@ export const getData = createAsyncThunk("data/getData", async () => {
     const res: AxiosResponse = await axiosApiInterceptor.get(
       `${db}/courses.json`
     );
-    return await res.data;
+    return res.data;
   } catch (error) {
-    console.log(error);
+    return alert("Перезагрузите страницу");
   }
 });
 

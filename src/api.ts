@@ -1,8 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
 const axiosApiInterceptor = axios.create();
-
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
 axiosApiInterceptor.interceptors.response.use(
   (response) => {
@@ -31,13 +28,38 @@ axiosApiInterceptor.interceptors.response.use(
             refreshToken: newTokens.data.refresh_token,
           })
         );
-      } catch (err) {
-        const nav = useNavigate();
+      } catch (err: any) {
         localStorage.removeItem("tokens");
-        nav("/login");
       }
     }
-    console.log(req, err);
+    switch (err.response.data.error.message) {
+      case "EMAIL_NOT_FOUND":
+        alert("Пользователь с такой почтой не найден");
+        break;
+      case "INVALID_PASSWORD":
+        alert("Неправильный пароль");
+        break;
+      case "INVALID_LOGIN_CREDENTIALS":
+        alert("Неправильный логин или пароль");
+        break;
+      case "TOO_MANY_ATTEMPTS_TRY_LATER : Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.":
+        alert(
+          "Аккаунт деактивирован на время из-за многократных неуспешных попыток входа. Попробуйте позже"
+        );
+        break;
+      case "TOO_MANY_ATTEMPTS_TRY_LATER":
+        alert("Очень много попыток. Повторите попытку позже.");
+        break;
+      case "EMAIL_EXISTS":
+        alert("Пользователь с такой почтой уже существует");
+        break;
+      case "OPERATION_NOT_ALLOWED":
+        alert('Операция "Регистрация" не разрешена');
+        break;
+      default:
+        alert("Ошибка в форме логина");
+        break;
+    }
   }
 );
 

@@ -28,7 +28,7 @@ export default function ByThemeFilter() {
         })
       );
     } catch (error) {
-      console.log(error);
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
   }, []);
 

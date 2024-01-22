@@ -38,38 +38,31 @@ export default function RegisterForm() {
           returnSecureToken: true,
         }
       );
-      navigate("/courses");
-      reset();
-      set(ref(db, `users/${res.data.localId}/data`), {
-        picture: `https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/photos%2Fpng-transparent-computer-icons-google-account-user-email-miscellaneous-rim-area.png?alt=media&token=8de3e769-4f37-4de1-9522-05476cb36795`,
-      });
-      userData = {
-        email: res.data.email,
-        token: res.data.idToken,
-        localId: res.data.localId,
-        refreshToken: res.data.refreshToken,
-      };
-      localStorage.setItem(
-        "tokens",
-        JSON.stringify({
-          idToken: userData.token,
-          refreshToken: userData.refreshToken,
-        })
-      );
-      localStorage.setItem("email", res.data.email);
-      localStorage.setItem("localId", res.data.localId);
-    } catch (error: any) {
-      switch (error.response.data.error.message) {
-        case "EMAIL_EXISTS":
-          alert("Пользователь с такой почтой уже существует");
-          break;
-        case "OPERATION_NOT_ALLOWED":
-          alert('Операция "Регистрация" не разрешена');
-          break;
-        default:
-          alert("Ошибка");
-          break;
+      if (!res) return;
+      else {
+        userData = {
+          email: res.data.email,
+          token: res.data.idToken,
+          localId: res.data.localId,
+          refreshToken: res.data.refreshToken,
+        };
+        localStorage.setItem(
+          "tokens",
+          JSON.stringify({
+            idToken: userData.token,
+            refreshToken: userData.refreshToken,
+          })
+        );
+        localStorage.setItem("email", res.data.email);
+        localStorage.setItem("localId", res.data.localId);
+        set(ref(db, `users/${res.data.localId}/data`), {
+          picture: `https://firebasestorage.googleapis.com/v0/b/webstudy-1b851.appspot.com/o/photos%2Fpng-transparent-computer-icons-google-account-user-email-miscellaneous-rim-area.png?alt=media&token=8de3e769-4f37-4de1-9522-05476cb36795`,
+        });
+        navigate("/courses");
+        reset();
       }
+    } catch (error: any) {
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
     return userData;
   };
@@ -181,7 +174,6 @@ export default function RegisterForm() {
             : `${inputStyle} cursor-default text-gray-500 bg-gray-400 ring-0`
         }
         type="submit"
-        onClick={() => onSubmit}
       >
         Регистрация
       </button>
