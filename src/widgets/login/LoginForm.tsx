@@ -42,36 +42,25 @@ export function LoginForm() {
       );
       navigate("/account");
       reset();
-      userData = {
-        email: res.data.email,
-        idToken: res.data.idToken,
-        localId: res.data.localId,
-        refreshToken: res.data.refreshToken,
-      };
-      localStorage.setItem("email", res.data.email);
-      localStorage.setItem(
-        "tokens",
-        JSON.stringify({
-          idToken: userData.idToken,
-          refreshToken: userData.refreshToken,
-        })
-      );
-    } catch (error: any) {
-      switch (error.res.data.error.message) {
-        case "EMAIL_NOT_FOUND":
-          alert("Пользователь с такой почтой не найден");
-          break;
-        case "INVALID_PASSWORD":
-          alert("Неправильный пароль");
-          break;
-        case "INVALID_LOGIN_CREDENTIALS":
-          alert("Неправильный логин или пароль");
-          break;
-        default:
-          alert("Ошибка в форме логина");
-          break;
+      if (!res) return;
+      else {
+        userData = {
+          email: res.data.email,
+          idToken: res.data.idToken,
+          localId: res.data.localId,
+          refreshToken: res.data.refreshToken,
+        };
+        localStorage.setItem("email", res.data.email);
+        localStorage.setItem(
+          "tokens",
+          JSON.stringify({
+            idToken: userData.idToken,
+            refreshToken: userData.refreshToken,
+          })
+        );
       }
-      console.log(error.response.data);
+    } catch (err: any) {
+      return alert(err);
     }
     return userData;
   };
@@ -131,7 +120,6 @@ export function LoginForm() {
             }
             onClick={() => setShowPass(!showPass)}
           ></RiEyeLine>
-          {/*проверка пароля временна. сменим для продакшена. будет проверка по базе данных */}
           <p className="text-red-500 font-montserrat text-xs absolute">
             {errors.password?.message}
           </p>

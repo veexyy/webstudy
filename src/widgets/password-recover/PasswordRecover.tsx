@@ -12,28 +12,19 @@ export default function PasswordRecover() {
     register,
     trigger,
     handleSubmit,
-    reset,
     formState: { errors, isValid },
   } = useForm<PasswordRecoverType>();
   const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
-  const onSubmit = (payload: PasswordRecoverType) => {
+  const onSubmit = async (payload: any) => {
     try {
-      axiosApiInterceptor.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${apiKey}`,
-        {
-          ...payload,
-          requestType: "PASSWORD_RESET",
-        }
+      await axiosApiInterceptor.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${apiKey}
+      `,
+        { ...payload, requestType: "PASSWORD_RESET" }
       );
-    } catch (error: any) {
-      console.log(error.response.data.error.message);
-      switch (error) {
-        case "EMAIL_NOT_FOUND":
-          alert("Пользователь с такой почтой не найден");
-          break;
-      }
+    } catch (error) {
+      return alert("Что-то пошло не так. Перезагрузите страницу.");
     }
-    reset();
   };
   const [element, setElement] = useState(false);
   const handleClick = () => {
