@@ -66,18 +66,22 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ index, data }) => {
       <AccordionSummary
         sx={{
           borderBottom: "1px solid white",
+          display: "flex",
+          alignItems: "center",
           padding: "0",
         }}
         expandIcon={<IoIosArrowDown className={"fill-white"} />}
       >
-        <ul>
-          <li>
-            <Typography sx={{ fontFamily: "Montserrat, sans-serif" }}>
-              {index}. {data}
-            </Typography>
-          </li>
-        </ul>
-        <MdDone className={done ? "visible" : "hidden"} />
+        <div className="flex items-center gap-1">
+          <ul>
+            <li>
+              <Typography sx={{ fontFamily: "Montserrat, sans-serif" }}>
+                {index}. {data}
+              </Typography>
+            </li>
+          </ul>
+          <MdDone className={done ? "visible" : "hidden"} />
+        </div>
       </AccordionSummary>
       <AccordionDetails
         sx={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
