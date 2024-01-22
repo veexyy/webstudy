@@ -6,7 +6,7 @@ export function MobileMenu({ open, setOpen }: Dispatch) {
   const token = localStorage.getItem("tokens");
   const nav = useNavigate();
   const handleExit = () => {
-    localStorage.removeItem("tokens");
+    localStorage.clear();
     setOpen(!open);
     nav("/login");
   };
@@ -26,10 +26,18 @@ export function MobileMenu({ open, setOpen }: Dispatch) {
             </li>
           ))}
           <Link to={"/account"}>
-            <li onClick={() => setOpen(false)}>Профиль</li>
+            <li
+              className="cursor-pointer hover:underline underline-offset-4"
+              onClick={() => setOpen(false)}
+            >
+              Профиль
+            </li>
           </Link>
           {token ? (
-            <li onClick={() => handleExit()} className="cursor-pointer">
+            <li
+              onClick={() => handleExit()}
+              className="cursor-pointer hover:underline underline-offset-4"
+            >
               Выйти
             </li>
           ) : (
