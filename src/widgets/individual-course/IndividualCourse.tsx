@@ -39,7 +39,10 @@ export function IndividualCourse(writeUserData: any) {
   }, [id]);
   return (
     <>
-      <div className="flex flex-col md:flex-row w-full max-w-[1024px] lg:max-w-[1100px] bg-black justify-between gap-10 items-center border border-white rounded-lg p-4 md:p-8 relative">
+      <div
+        data-testid="individual-course"
+        className="flex flex-col md:flex-row w-full max-w-[1024px] lg:max-w-[1100px] bg-black justify-between gap-10 items-center border border-white rounded-lg p-4 md:p-8 relative"
+      >
         <Suspense fallback={<Rings color="white" height={80} width={80} />}>
           <CourseImage
             className="w-[100px] sm:w-[150px] lg:w-[200px] max-h-[250px]"

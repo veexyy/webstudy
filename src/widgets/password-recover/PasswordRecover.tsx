@@ -33,6 +33,7 @@ export default function PasswordRecover() {
   return (
     <>
       <form
+        data-testid="password-recover-form"
         onSubmit={handleSubmit(onSubmit)}
         className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[85vh] max-w-[500px] px-3 gap-8"
       >

@@ -43,12 +43,18 @@ export function LKHeader() {
               {pic ? (
                 <img
                   src={pic}
+                  data-testid="avatar"
                   className="rounded-full w-10 h-10 border border-white cursor-pointer"
                   alt="Avatar"
                   onClick={() => setShowModal(!showModal)}
                 />
               ) : (
-                <TailSpin height={40} width={40} color="white" />
+                <TailSpin
+                  data-testid="avatar"
+                  height={40}
+                  width={40}
+                  color="white"
+                />
               )}
             </>
           ) : (
@@ -56,11 +62,18 @@ export function LKHeader() {
               {pic ? (
                 <img
                   src={picUrl}
+                  data-testid="avatar"
+                  alt="Avatar"
                   className="w-10 h-10 rounded-full cursor-pointer"
                   onClick={() => setShowModal(!showModal)}
                 />
               ) : (
-                <TailSpin height={40} width={40} color="white" />
+                <TailSpin
+                  data-testid="avatar"
+                  height={40}
+                  width={40}
+                  color="white"
+                />
               )}
             </>
           )}

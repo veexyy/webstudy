@@ -8,6 +8,7 @@ export default function Modal({ showModal, setShowModal }: any) {
   });
   return (
     <dialog
+      data-testid="modal"
       ref={modalRef}
       open={showModal ? true : false}
       className="right-0 relative w-full"

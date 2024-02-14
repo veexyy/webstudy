@@ -90,6 +90,9 @@ export default function Settings() {
   return (
     <>
       <div className="flex flex-col gap-12 sm:gap-24 justify-between mt-3 lg:mt-16 px-4 sm:px-0">
+        <h1 className="text-white font-akony text-xl sm:text-3xl text-center">
+          Настройки
+        </h1>
         <section className="px-5 py-6 rounded-3xl border border-white flex flex-col sm:flex-row items-center gap-8">
           <div
             id="image-section"
