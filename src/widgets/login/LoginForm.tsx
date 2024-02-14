@@ -67,6 +67,7 @@ export function LoginForm() {
   return (
     <>
       <form
+        data-testid="login-form"
         onSubmit={handleSubmit(onSubmit)}
         method="post"
         className="font-montserrat flex flex-col items-center justify-center mx-auto min-h-[90vh] max-w-[500px] px-3 gap-3"
