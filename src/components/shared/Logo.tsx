@@ -4,6 +4,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link to="/">
       <svg
+        data-testid="logo"
         width="173"
         className={className}
         height="45"

@@ -60,7 +60,7 @@ export default function CourseInfo() {
             </>
           )}
         </div>
-        <div className="lg:w-2/3">
+        <div data-testid="accordion" className="lg:w-2/3">
           <CourseAccordion />
         </div>
       </div>

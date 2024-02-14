@@ -12,7 +12,7 @@ export function MobileMenu({ open, setOpen }: Dispatch) {
   };
 
   return (
-    <>
+    <div data-testid="mobile-menu">
       <Cross open={open} setOpen={setOpen} />
       <div className="lg:invisible visible duration-1000 fixed bg-black min-h-screen w-full top-0 left-0 text-white text-center flex justify-center font-bold items-center font-montserrat gap-[10px] z-50">
         <ul className="flex flex-col gap-[10px]">
@@ -46,7 +46,8 @@ export function MobileMenu({ open, setOpen }: Dispatch) {
             </Link>
           )}
         </ul>
+        Cross
       </div>
-    </>
+    </div>
   );
 }
