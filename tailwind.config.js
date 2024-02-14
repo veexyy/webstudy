@@ -30,6 +30,9 @@ export default {
       textShadow: {
         sm: "2px 2px 4px var(--tw-shadow-color)",
       },
+      textShadow: {
+        sm: "2px 2px 4px var(--tw-shadow-color)",
+      },
     },
   },
   plugins: [
