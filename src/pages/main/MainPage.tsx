@@ -1,11 +1,15 @@
 import { SlArrowDown } from "react-icons/sl";
 import { ContactInformation } from "../../widgets/contact-information/ContactInformation";
 import Professions from "./components/Professions";
+import { Helmet } from "react-helmet";
 import Ratings from "../../widgets/ratings/Ratings";
 import WeAreInMedia from "./components/WeAreInMedia";
 export default function MainPage() {
   return (
     <>
+      <Helmet>
+        <title>WebStudy | Главная</title>
+      </Helmet>
       <div className="text-white flex flex-col items-center justify-center min-h-screen gap-16">
         <div className="text-center flex flex-col gap-2">
           <h1 className="font-akony text-xl md:text-4xl">Webstudy</h1>

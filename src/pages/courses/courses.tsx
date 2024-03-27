@@ -14,6 +14,7 @@ import Coursesinput from "../../components/shared/coursesinput";
 import { CourseSkeleton } from "../../components/shared/skeletons/skeletons";
 import { LuSettings2 } from "react-icons/lu";
 import MobileFilters from "./components/mobile-filters";
+import { Helmet } from "react-helmet";
 export interface Course {
   id: string;
   title?: string;
@@ -55,6 +56,9 @@ export default function Courses() {
   }, [dispatch]);
   return (
     <>
+      <Helmet>
+        <title>WebStudy | Курсы</title>
+      </Helmet>
       <MobileFilters setOpen={setOpen} open={open} />
       <Title />
       <div className="grid grid-cols-1 lg:block">

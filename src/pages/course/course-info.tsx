@@ -1,10 +1,11 @@
 import Card from "../courses/components/card";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getDatabase, onValue, ref } from "firebase/database";
 import { useAppDispatch } from "../../components/shared/store/hooks/redux-hooks";
 import { removeFilters } from "../../components/shared/store/filterSlice";
 import { useNavigate } from "react-router-dom";
 import CourseAccordion from "./components/accordion";
+import { Helmet } from "react-helmet";
 
 export default function CourseInfo() {
   const dispatch = useAppDispatch();
@@ -37,7 +38,7 @@ export default function CourseInfo() {
   return (
     <>
       <div
-        className="text-white cursor-pointer font-montserrat max-w-full flex mb-4"
+        className="text-white cursor-pointer font-montserrat max-w-fit flex mb-4"
         onClick={handlerExit}
       >
         ← Вернуться назад
@@ -48,13 +49,18 @@ export default function CourseInfo() {
             <>
               {courseData.map(
                 ({ title, fullCourseDuration, id, picture }, i) => (
-                  <Card
-                    key={i}
-                    title={title}
-                    fullCourseDuration={fullCourseDuration}
-                    id={id}
-                    image={picture}
-                  />
+                  <React.Fragment key={id}>
+                    <Helmet>
+                      <title>{"WebStudy | " + title}</title>
+                    </Helmet>
+                    <Card
+                      key={i}
+                      title={title}
+                      fullCourseDuration={fullCourseDuration}
+                      id={id}
+                      image={picture}
+                    />
+                  </React.Fragment>
                 )
               )}
             </>

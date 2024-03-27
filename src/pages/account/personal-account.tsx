@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../components/shared/store/hooks/redux-hooks"
 import { useEffect, useState } from "react";
 import { getUser } from "../../components/shared/store/userSlice";
 import Card from "../courses/components/card";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { pickCourse } from "../../components/shared/store/courseSlice";
 import { AppDispatch } from "../../components/shared/store/store";
@@ -39,6 +40,9 @@ export default function PersonalAccount() {
 
   return (
     <>
+      <Helmet>
+        <title>WebStudy | Профиль</title>
+      </Helmet>
       <div className="text-white">
         {data.length === 0 ? (
           <div className="font-montserrat mobile:text-base text-sm text-center">

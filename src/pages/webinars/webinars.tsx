@@ -3,6 +3,7 @@ import Filters from "../../widgets/filters/Filters";
 import { useEffect, useMemo, useState } from "react";
 import { useAppSelector } from "../../components/shared/store/hooks/redux-hooks";
 import Title from "../../components/shared/title";
+import { Helmet } from "react-helmet";
 
 export default function Webinars() {
   const db = getDatabase();
@@ -51,6 +52,9 @@ export default function Webinars() {
 
   return (
     <>
+      <Helmet>
+        <title>WebStudy | Вебинары</title>
+      </Helmet>
       <Title />
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 my-8 lg:my-16">
         <div className="text-white lg:w-1/3">

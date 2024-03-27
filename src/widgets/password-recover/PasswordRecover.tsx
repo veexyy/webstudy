@@ -7,6 +7,7 @@ import axiosApiInterceptor from "../../api";
 type PasswordRecoverType = {
   email: string;
 };
+import { Helmet } from "react-helmet";
 export default function PasswordRecover() {
   const {
     register,
@@ -32,6 +33,9 @@ export default function PasswordRecover() {
   };
   return (
     <>
+      <Helmet>
+        <title>WebStudy | Восстановление пароля</title>
+      </Helmet>
       <form
         data-testid="password-recover-form"
         onSubmit={handleSubmit(onSubmit)}
