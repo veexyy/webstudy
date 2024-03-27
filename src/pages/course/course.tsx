@@ -15,6 +15,7 @@ import { getUser } from "../../components/shared/store/userSlice";
 import WhatYouWillCan from "../../widgets/what-you-will-can/WhatYouWillCan";
 import Ratings from "../../widgets/ratings/Ratings";
 import { PayWidget } from "../../widgets/paywidget/PayWidget";
+import { Helmet } from "react-helmet";
 export default function Course() {
   const nav = useNavigate();
   const dispatch = useAppDispatch();
@@ -56,6 +57,9 @@ export default function Course() {
   }, [dispatch]);
   return (
     <>
+      <Helmet>
+        <title>{"WebStudy | " + pickedCourse.pickedCourseTitle}</title>
+      </Helmet>
       <div
         className="text-white cursor-pointer font-montserrat"
         onClick={handlerExit}

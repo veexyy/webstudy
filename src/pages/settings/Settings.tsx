@@ -3,6 +3,7 @@ import { inputStyle } from "../../components/shared/consts";
 import { useEffect, useState, useRef } from "react";
 import { AxiosResponse } from "axios";
 import axiosApiInterceptor from "../../api";
+import { Helmet } from "react-helmet";
 import {
   getDownloadURL,
   getStorage,
@@ -89,6 +90,9 @@ export default function Settings() {
 
   return (
     <>
+      <Helmet>
+        <title>WebStudy | Настройки</title>
+      </Helmet>
       <div className="flex flex-col gap-12 sm:gap-24 justify-between mt-3 lg:mt-16 px-4 sm:px-0">
         <h1 className="text-white font-akony text-xl sm:text-3xl text-center">
           Настройки

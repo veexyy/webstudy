@@ -1,10 +1,13 @@
 import { ContactInformation } from "../../widgets/contact-information/ContactInformation";
 import { OurAchievments } from "../../widgets/our-achievments/OurAchievments";
 import { AboutSkeleton } from "../../components/shared/skeletons/skeletons";
-
+import { Helmet } from "react-helmet";
 export default function About() {
   return (
     <div className="text-white">
+      <Helmet>
+        <title>WebStudy | О нас</title>
+      </Helmet>
       <section>
         <h1 className="text-3xl md:text-5xl font-bold font-montserrat text-white mt-10 md:mt-20 mb-12 md:mb-24">
           О нас
