@@ -65,7 +65,16 @@ export default function ByDirectionFilter(): JSX.Element {
               value="any"
               checked={checked === "any"}
               onChange={anyCategory}
-              sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
+              sx={{
+                color: "white",
+                paddingLeft: "0",
+                "&.Mui-checked": {
+                  color: blue[900],
+                  "& .MuiTouchRipple-root": {
+                    left: "-8px",
+                  },
+                },
+              }}
             />
             Любое
           </div>
@@ -79,7 +88,16 @@ export default function ByDirectionFilter(): JSX.Element {
                   value={item}
                   checked={checked === item}
                   onChange={handleChange}
-                  sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
+                  sx={{
+                    color: "white",
+                    paddingLeft: "0",
+                    "&.Mui-checked": {
+                      color: blue[900],
+                      "& .MuiTouchRipple-root": {
+                        left: "-8px",
+                      },
+                    },
+                  }}
                 />
                 {categoriesList[item]}
               </div>

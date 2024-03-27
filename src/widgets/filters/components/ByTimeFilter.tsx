@@ -46,7 +46,17 @@ export default function ByDirectionFilter() {
               size="small"
               checked={checked === "any"}
               onChange={anyCategory}
-              sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
+              sx={{
+                color: "white",
+                paddingLeft: "0",
+                "&.Mui-checked": {
+                  color: blue[900],
+                  paddingLeft: "0",
+                  "& .MuiTouchRipple-root": {
+                    left: "-8px",
+                  },
+                },
+              }}
             />
             Любая
           </div>
@@ -57,7 +67,16 @@ export default function ByDirectionFilter() {
                 value={value}
                 checked={checked === value}
                 onChange={handleChange}
-                sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
+                sx={{
+                  color: "white",
+                  paddingLeft: "0",
+                  "&.Mui-checked": {
+                    color: blue[900],
+                    "& .MuiTouchRipple-root": {
+                      left: "-8px",
+                    },
+                  },
+                }}
               />
               {value}
             </div>

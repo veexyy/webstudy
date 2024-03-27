@@ -40,7 +40,16 @@ export default function ByDifficultFilter(): JSX.Element {
             value="any"
             size="small"
             checked={checked === "any"}
-            sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
+            sx={{
+              color: "white",
+              paddingLeft: "0",
+              "&.Mui-checked": {
+                color: blue[900],
+                "& .MuiTouchRipple-root": {
+                  left: "-8px",
+                },
+              },
+            }}
             onChange={anyCategory}
           />
           Любой
@@ -52,7 +61,16 @@ export default function ByDifficultFilter(): JSX.Element {
               value={key}
               checked={checked === key.toString()}
               onChange={handleChange}
-              sx={{ color: "white", "&.Mui-checked": { color: blue[900] } }}
+              sx={{
+                color: "white",
+                paddingLeft: "0",
+                "&.Mui-checked": {
+                  color: blue[900],
+                  "& .MuiTouchRipple-root": {
+                    left: "-8px",
+                  },
+                },
+              }}
             />
             {value}
           </div>
