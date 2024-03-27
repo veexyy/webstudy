@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Filters from "../../widgets/filters/Filters";
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 const Card = lazy(() => import("./components/card"));
 import { useEffect, useState } from "react";
 import {
@@ -14,7 +14,6 @@ import Coursesinput from "../../components/shared/coursesinput";
 import { CourseSkeleton } from "../../components/shared/skeletons/skeletons";
 import { LuSettings2 } from "react-icons/lu";
 import MobileFilters from "./components/mobile-filters";
-import { Rings } from "react-loader-spinner";
 export interface Course {
   id: string;
   title?: string;
@@ -101,39 +100,30 @@ export default function Courses() {
                       to={`/courses/${id}`}
                       key={id}
                     >
-                      <Suspense
-                        fallback={
-                          <Rings
-                            visible={true}
-                            height="80"
-                            width="80"
-                            color="#fff"
-                            ariaLabel="rings-loading"
-                          />
-                        }
-                      >
-                        <Card
-                          id={id}
-                          fullCourseDuration={fullCourseDuration}
-                          image={picture}
-                          title={title}
-                          category={category}
-                          key={id}
-                        />
-                      </Suspense>
+                      <Card
+                        id={id}
+                        fullCourseDuration={fullCourseDuration}
+                        image={picture}
+                        title={title}
+                        category={category}
+                        key={id}
+                      />
                     </Link>
                   )
                 )
               : [...new Array(15)].map((_, index) => (
                   <CourseSkeleton key={index} />
                 ))}
-
-            <button
-              className="text-white font-montserrat font-bold border border-white px-8 py-2 rounded-xl justify-self-center col-span-1 md:col-span-2 xl:col-span-3"
-              onClick={() => setVisibleItems(visibleItems + 9)}
-            >
-              Показать еще
-            </button>
+            {filteredCourses.length === 0 ? (
+              <div>Ничего не найдено.</div>
+            ) : filteredData.length % 9 === 0 ? (
+              <button
+                className="text-white font-montserrat hover:text-blue-300 duration-500 font-bold border border-white px-8 py-2 rounded-xl justify-self-center col-span-1 md:col-span-2 xl:col-span-3"
+                onClick={() => setVisibleItems(visibleItems + 9)}
+              >
+                Показать еще
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
